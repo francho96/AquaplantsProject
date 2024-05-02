@@ -15,6 +15,9 @@ npx cap init
 ```
 3 Agregar la plataforma correspondiente, en este caso Android
 ```bash
+npm install @capacitor/android
+```
+```bash
 npx cap add android
 ```
 ## En segundo lugar, crear la build de React
