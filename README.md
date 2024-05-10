@@ -5,7 +5,7 @@ Este es el repositorio de código para el desarrollo de la app móvil de Aquapla
 Para construir la aplicación con Capacitor se necesita hacer lo siguiente en la raíz del proyecto de React:
 
 ## Instalación de capacitor
-1 para instalar capacitor en React.js:
+1 para instalar capacitor en React:
 ```bash
 npm install --save @capacitor/core @capacitor/cli
 ```
