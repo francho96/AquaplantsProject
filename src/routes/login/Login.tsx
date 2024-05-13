@@ -1,5 +1,6 @@
 import "./styles.css";
 import AquaplantsLogo from "../../assets/Logo_AquaPlants_letraverde_fondotransparente.png"
+import { Link } from "react-router-dom";
 export default function App() {
   return (
     <div className="App">
@@ -19,7 +20,9 @@ export default function App() {
             <a className="changePassword">¿Olvidaste la contraseña?</a>
           </div>
           <div className="lower-form">
-            <button className="button">Entrar</button>
+          <Link to="/in" className="button" style={{textAlign: "center"}}>
+						Entrar
+					</Link>
             <span>
               <a className="register" href="#">
                 ¿Aún no eres Aquaplanter?
