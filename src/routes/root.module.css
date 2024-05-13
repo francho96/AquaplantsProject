@@ -1,13 +1,13 @@
 .view {
-  padding-bottom: 94px;
+  padding-bottom: 74px;
 
 }
 .top {
-  position: absolute;
+  position: fixed;
   width: 100%;
   overflow: hidden;
   z-index: 110;
-  top: calc(100vh - 94px);
+  top: calc(100vh - 74px);
 }
 
 .sidebar {

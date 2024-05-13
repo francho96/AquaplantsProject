@@ -17,18 +17,17 @@
 	background-color:  #046c34;
 	color: aliceblue;
 	text-align: center;
-	border-right: 1px solid aliceblue;
-	border-left: 1px solid aliceblue;
 	border-radius: 0px;
 	align-items: center;
 	justify-content: center;
 	align-content: center;
 	height: 100%;
 	width: 100%;
+
   }
 
 .fondo {
-	height: 94px;
+	height: 74px;
 	background-color: #046c34;
 	display: flex;
 	align-items: center;

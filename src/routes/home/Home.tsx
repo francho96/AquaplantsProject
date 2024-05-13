@@ -1,15 +1,30 @@
 import "./styles.css";
-import AquaplantsLogo from "../../assets/Logo_AquaPlants_letraverde_fondotransparente.png"
+import Header from "../components/Header";
+import Card from "../components/Card";
+import SpaIcon from '@mui/icons-material/Spa';
+
 export default function App() {
   return (
     <div className="App">
       <div className="wrapper">
-        <img className="heading" src={AquaplantsLogo} width="200px" style={{marginTop: "100px", marginBottom: "50px"}}></img>
-        <form className="form-wrapper">
+        <Header title="Franco Barría" sex="men" />  
+        <Card>
+          Como se puede observar este es un ejemplo de tarjeta
+        </Card>
+        <Card>
+          A lo largo de cada vista pueden haber muchas, demasiadas, tarjetas, lorem ipsum y cosas,
+          este es un texto de prueba para demostrar los estirables que son estas tarjetas
+        </Card>
 
-
-  
-        </form>
+        <Card>
+          <SpaIcon fontSize="large"/>
+          tambien pueden ir imagenes
+        </Card>
+        <Card>
+          A lo largo de cada vista pueden haber muchas, demasiadas, tarjetas, lorem ipsum y cosas,
+          este es un texto de prueba para demostrar los estirables que son estas tarjetas, si lo repeti
+          para que se vea que se estira la pagina 
+        </Card>
       </div>
     </div>
   );
