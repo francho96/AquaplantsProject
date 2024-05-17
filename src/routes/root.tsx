@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import styles from './root.module.css';
 import TopBar from './topBar/TopBar';
-import React from 'react';
+//import React from 'react';
 
 const Root = () => {
 	return (
