@@ -18,9 +18,11 @@ a {
 	font-weight: 500;
 	color: #046c34;
 	text-decoration: inherit;
+	transition: 0.7s;
 }
 a:hover {
-	color: #046c34;
+	color: #22da78;
+	transition: 0.7s;
 }
 
 body {
@@ -35,6 +37,12 @@ h1 {
 	color: #005025;
 }
 
+h2 {
+	font-size: 20px;
+	line-height: 1.1;
+	color: #f5f5f5;
+	margin: 0;
+}
 button {
 	border-radius: 8px;
 	border: 1px solid transparent;

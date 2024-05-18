@@ -1,4 +1,32 @@
+.headerBackground {
+  height: 250px;
+  background-color: #2a653b;
+  width: 100vw;
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  margin-top: -20px;
+  border-radius: 20px;
+}
 
+.green-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #2a653b;
+  z-index: 10;
+  animation: slide-up 1s forwards;
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
 
 .wrapper {
   display: flex;
@@ -31,7 +59,7 @@
   padding: 10px;
   border-radius: 5px;
   width: 100%;
-  background-color:  #046c34;
+  background-color:  #2a653b;
   color: aliceblue;
 }
 
@@ -53,16 +81,16 @@
 }
 
 .underline {
-  color: #046c34;
+  color: #2a653b;
   text-decoration: underline;
 }
 
 .register {
   text-decoration: none;
-  color: #046c34;
+  color: #2a653b;
   text-decoration: underline;
 }
 
 .changePassword {
-  color: #046c34;
+  color: #2a653b;
 }

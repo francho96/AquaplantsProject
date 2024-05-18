@@ -14,7 +14,7 @@
 
 	border-radius: 5px;
 	width: 100%;
-	background-color:  #046c34;
+	background-color:  #2a653b;
 	color: aliceblue;
 	text-align: center;
 	border-radius: 0px;
@@ -28,7 +28,7 @@
 
 .fondo {
 	height: 74px;
-	background-color: #046c34;
+	background-color: #2a653b;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

@@ -1,46 +1,104 @@
 import "./styles.css";
-import Header from "../components/Header";
 import Card from "../components/Card";
-import SpaIcon from '@mui/icons-material/Spa';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import StarsIcon from '@mui/icons-material/Stars';
+import raiz from "../../assets/raiz.png";
+import fertilizante from "../../assets/Fertilizante.png";
+import hoja from "../../assets/hoja.png";
+import { useEffect, useState } from "react";
+
 
 export default function App() {
+
+  const [showCover, setShowCover] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCover(false);
+    }, 1000);
+  
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="App">
+      {showCover && (
+        <div className="green-screen"></div>
+      )}
+      <div className="headerBackground">
+        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
+          <AccountCircleIcon style={{fontSize: "60px", color: "#ffffff"}}/>
+          <h2 style={{color: "#f5f5f5"}}>Bienvenido<br/>Franco Barría</h2>
+        </div>
+        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
+          <img src={raiz} width="30px" style={{margin: "0 15px 0 15px"}}/>
+          <div style={{color: "#f5f5f5"}}>Torre de 12 pisos</div>
+        </div>
+        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
+          <LocationOnIcon style={{fontSize: "30px", color: "#ffffff", width: "60px"}}/>
+          <div style={{color: "#f5f5f5"}}>Despacho a Antártica Chilena</div>
+        </div>
+        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
+          <StarsIcon style={{fontSize: "30px", color: "#ffffff",  width: "60px"}}/>
+          <div style={{color: "#f5f5f5"}}>Plan de suscripción premium</div>
+        </div>
+      </div>
       <div className="wrapper">
-        <Header title="Franco Barría" sex="getlemen" />  
+        <h2 style={{color: "#444444", alignSelf: "flex-start", marginTop: "20px"}}>Mis pedidos</h2>
         <Card>
-          Como se puede observar este es un ejemplo de tarjeta
-        </Card>
-        <Card>
-          A lo largo de cada vista pueden haber muchas, demasiadas, tarjetas, lorem ipsum y cosas,
-          este es un texto de prueba para demostrar los estirables que son estas tarjetas
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+            <div>
+            Orden:
+            </div>
+            <div>
+            666 
+            </div>
+          </div>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+            <div>
+            Tipo:
+            </div>
+            <div>
+            Refill de almácigos 
+            </div>
+          </div>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+            <div>
+            Estado:
+            </div>
+            <div>
+            En proceso 
+            </div>
+          </div>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+            <div>
+              Fecha de entrega:
+            </div>
+            <div>
+              30 de febrero 2025 
+            </div>
+          </div>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+            <div>
+              Comuna:
+            </div>
+            <div>
+              Antártica Chilena
+            </div>
+          </div>
         </Card>
         <div style={{width: "100%", display: "flex", gap: "20px"}}>
           <Card>
-            Hola somos unas tarjetas
+            <img src={fertilizante} width="50px" style={{margin: "auto", marginBottom: "10px", filter: "opacity(0.5) drop-shadow(0 0 0 green)"}}/>
+            Refill Fertilizante
           </Card>
           <Card>
-            dobles
+          <img src={hoja} width="50px" style={{margin: "auto" , marginBottom: "10px", filter: "opacity(0.5) drop-shadow(0 0 0 green)"}}/>
+            Refill Almácigos
           </Card>
         </div>
-        <Card>
-          <Header title="y yo un titulo"/>
-          <Card>
-            y nosotros estamos
-          </Card>
-          <Card>
-            anidadas
-          </Card>
-          </Card>
-        <Card>
-          <SpaIcon fontSize="large"/>
-          tambien pueden ir imagenes
-        </Card>
-        <Card>
-          A lo largo de cada vista pueden haber muchas, demasiadas, tarjetas, lorem ipsum y cosas,
-          este es un texto de prueba para demostrar los estirables que son estas tarjetas, si lo repeti
-          para que se vea que se estira la pagina 
-        </Card>
+        
       </div>
     </div>
   );
