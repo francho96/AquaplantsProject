@@ -32,9 +32,9 @@
 
 .dummyBackground2 {
   background-color: #2a653b;
-  height: 60vh;
+  height: 300vh;
   width: 100vw;
-  top: 40vh;
+  top: 50vh;
   position: absolute;
   z-index: -2;
   transition: 1s;
