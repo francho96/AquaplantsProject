@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Link } from 'react-router-dom';
+
 import Card from "../components/Card";
 import fertilizante from "../../assets/Fertilizante.png";
 import hoja from "../../assets/hoja.png";
@@ -49,12 +49,10 @@ export default function App() {
             <div style={{ width: "100%", display: "flex", justifyContent: "center", textAlign: "center" }}>
               <div style={{ width: "70%", display: "flex", gap: "10px", justifyContent: "center" }}>
                 <Card>
-                <Link to="/in/refill/fertilizante" >
                   <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
                     <img src={fertilizante} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
                     <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Fertilizante</div>
                   </div>
-                  </Link>
                 </Card>
                 <Card>
                   <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
@@ -95,10 +93,10 @@ export default function App() {
           <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Historial:</h2>
           <Card>
             <ul style={{ marginTop: "0", marginBottom: "0", listStyleType: "disc" }}>
-              <li>05/04/2024 - OS4429</li>
-              <li>05/04/2024 - OS4429</li>
-              <li>05/04/2024 - OS4429</li>
-              <li>05/04/2024 - OS4429</li>
+              <li>OS423443</li>
+              <li>En proceso</li>
+              <li>Entrega: 26/04/2024</li>
+              <li>Antartica</li>
             </ul>
           </Card>
         </div>

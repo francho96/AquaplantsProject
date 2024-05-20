@@ -7,6 +7,7 @@ import Shopping from './routes/Shopping/Shopping';
 import Refill from './routes/Refill/Refill';
 import User from './routes/User/User';
 import Mail from './routes/mail/Mail';
+import Fertilizante from './routes/Refill/Refill-Fertilizante';
 
 const Login = lazy(() => import('./routes/login/Login'));
 const Root = lazy(() => import('./routes/root'));
@@ -27,6 +28,7 @@ function App() {
                             <Route path='shopping' element={<Shopping />} />
                             <Route path='user' element={<User />} />
                             <Route path='refill' element={<Refill />} />
+                            <Route path='refill/fertilizante' element={<Fertilizante />} />
                             <Route path='mail' element={<Mail />} />
                         </Route>
                 </Routes>
