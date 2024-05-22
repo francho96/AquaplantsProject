@@ -53,3 +53,35 @@ jobs:
       with:
         name: app_aqp
         path: android/app/build/outputs/apk/debug/app_aqp.apk
+
+  release:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download APK
+        uses: actions/download-artifact@v2
+        with:
+          name: app_aqp
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub automáticamente crea este secreto
+        with:
+          tag_name: ${{ github.sha }}
+          release_name: Release ${{ github.sha }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./app_aqp/app_aqp.apk
+          asset_name: app_aqp.apk
+          asset_content_type: application/vnd.android.package-archive
