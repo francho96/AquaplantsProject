@@ -68,7 +68,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub automáticamente crea este secreto
+          GITHUB_TOKEN: ${{ secrets.Clemente }}
         with:
           tag_name: ${{ github.sha }}
           release_name: Release ${{ github.sha }}
@@ -79,7 +79,7 @@ jobs:
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.Clemente }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
           asset_path: ./app_aqp/app_aqp.apk
