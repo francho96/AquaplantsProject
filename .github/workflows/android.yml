@@ -35,4 +35,6 @@ jobs:
         npx cap init
         npx cap add android
         npx cap copy
-        npx cap open android
+        cd android
+        chmod +x ./gradlew
+        ./gradlew assembleDebug
