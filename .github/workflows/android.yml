@@ -1,0 +1,38 @@
+name: Android Release
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Dependencies
+      run: |
+        npm install
+        npm install --save @capacitor/core @capacitor/cli
+        npm install @capacitor/android
+
+    - name: React App
+      run: |
+        npm run build
+
+    - name: Android APK
+      run: |
+        npx cap init
+        npx cap add android
+        npx cap copy
+        npx cap open android
