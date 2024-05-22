@@ -1,15 +1,33 @@
-import "./styles.css";
+import { useEffect, useState } from 'react';
+import './styles.css';
+import Card from '../components/Card';
+import fertilizante from '../../assets/Fertilizante.png';
+import hoja from '../../assets/hoja.png';
+import Contador from '../components/Contador';
+import Carrito from '../components/Carrito';
+import raiz from '../../assets/raiz.png';
+import ShoppingCartIcon from '../../assets/carrito.png';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import { Link } from 'react-router-dom';
+// Almacigos
+import milanesa from '../../assets/almacigos/lechuga-milanesa.png';
+import marina from '../../assets/almacigos/lechuga-marina.png';
+import canasta from '../../assets/almacigos/lechuga-canasta.png';
+import acelga from '../../assets/almacigos/acelga.png';
+import mizuna from '../../assets/almacigos/mizuna-verde.png';
+import espinaca from '../../assets/almacigos/Espinaca.png';
+import espanola from '../../assets/almacigos/Lechuga_Espanola.png';
 
-import Card from "../components/Card";
-import fertilizante from "../../assets/Fertilizante.png";
-import hoja from "../../assets/hoja.png";
-import sol from "../../assets/sol.png";
-import planta_nuevo from "../../assets/planta_otra_vez.png";
 
-import { useEffect, useState } from "react";
+interface CartItem {
+  name: string;
+  quantity: number;
+}
 
 export default function App() {
   const [showCover, setShowCover] = useState(true);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -19,88 +37,146 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  const addToCart = (name: string) => {
+    setCartItems(prevItems => {
+      const itemIndex = prevItems.findIndex(item => item.name === name);
+      if (itemIndex !== -1) {
+        const updatedItems = [...prevItems];
+        updatedItems[itemIndex].quantity += 1;
+        return updatedItems;
+      } else {
+        return [...prevItems, { name, quantity: 1 }];
+      }
+    });
+  };
+
+  const handleCartToggle = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
-    <div className="App">
-      {showCover && (
-        <div className="green-screen"></div>
-      )}
-      <div className="App">
+    <div>
+      {showCover && <div className="green-screen"></div>}
+      <div >
         <div className="headerBackground">
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <img src={planta_nuevo} width="60px" style={{ fontSize: "60px", color: "#ffffff" }} />
-            <h2 style={{ color: "#f5f5f5" }}>Refill</h2>
+          <div className="header-content">
+            <Link to="/in/refill">
+              <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
+            </Link>
+            <img src={fertilizante} width="70px" />
+            <h2>Refill</h2>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <div style={{ color: "#f5f5f5" }}>¡Recuerda que con tu suscripción puedes acceder a distintos beneficios!</div>
+          <div className="header-content">
+            <div> ¡Aquí puedes seleccionar los distintos almácigos que tenemos disponibles!</div>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <img src={hoja} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Refill de almácigos.</div>
+          <div className="header-content">
+            <img src={hoja} width="30px" />
+            <div>AquaPlants 3 MINI.</div>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <img src={fertilizante} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Refill de fertilizante.</div>
+          <div className="header-content">
+            <img src={raiz} style={{ fontSize: '30px', color: '#ffffff', width: '30px' }} />
+            <div>Limite de 12 almácigos.</div>
           </div>
         </div>
         <div className="wrapper">
-          <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona la torre para realizar una recarga:</h2>
+          <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '20px' }}>Selecciona el producto que desees:</h2>
           <Card>
-            <h4 style={{ marginTop: "0", marginBottom: "0", textAlign: "center" }}>Torre AquaPlants 3 MINI</h4>
-            <div style={{ width: "100%", display: "flex", justifyContent: "center", textAlign: "center" }}>
-              <div style={{ width: "70%", display: "flex", gap: "10px", justifyContent: "center" }}>
-                <Card>
-                  <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
-                    <img src={fertilizante} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
-                    <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Fertilizante</div>
+
+            <div className="card-container">
+              <div className="card">
+                <div className="card-title">Lechuga Milanesa</div>
+                <div className="card-content">
+                  <img src={milanesa} />
+                  <div style={{ fontSize: "80%" }}>
+                    Compuesta por vitamina C, Omega 3 y Omega 6, además de incluir altos porcentajes de ácidos grasos.
                   </div>
-                </Card>
-                <Card>
-                  <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
-                    <img src={hoja} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
-                    <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Almácigos</div>
-                  </div>
-                </Card>
+                  <Contador onAdd={() => addToCart('Lechuga Milanesa.')} />
+                </div>
               </div>
+
+              <div className="card">
+                <div className="card-title">Lechuga Marina Verde</div>
+                <div className="card-content">
+                  <img src={marina} />
+                  <div style={{ fontSize: "80%" }}>
+                    Rica en sodio, potasio, magnesio, yodo, aluminio, manganeso y níquel y contiene vitaminas A, B1 y C.
+                  </div>
+                  <Contador onAdd={() => addToCart('Lechuga Marina.')} />
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-title">Acelga</div>
+                <div className="card-content">
+                  <img src={acelga} />
+                  <div style={{ fontSize: "80%" }}>
+                    Fortalece tus huesos ya que es rica en Vitamina K, mejora la salud cardiovascular y aporta fibra dietética.
+                  </div>
+                  <Contador onAdd={() => addToCart('Acelga.')} />
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-title">Lechuga Canasta</div>
+                <div className="card-content">
+                  <img src={canasta} />
+                  <div style={{ fontSize: "80%" }}>
+                    Ricas en fibra y alto contenido de agua. Contiene vitamina A, potasio, vitamina C, calcio, hierro y cobre.
+                  </div>
+                  <Contador onAdd={() => addToCart('Lechuga Canasta.')} />
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-title">Espinaca</div>
+                <div className="card-content">
+                  <img src={espinaca} />
+                  <div style={{ fontSize: "80%" }}>
+                    Fuente excelente de vitaminas K, A, C y ácido fólico. También es rica en manganeso, magnesio, hierro y vitamina B2.
+                  </div>
+                  <Contador onAdd={() => addToCart('Espinaca.')} />
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-title">Lechuga Española</div>
+                <div className="card-content">
+                  <img src={espanola} />
+                  <div style={{ fontSize: "80%" }}>
+                    Cuida nuestro corazón porque contiene flavonoides, tiene la propiedad de disminuir el riesgo de enfermedades cardíacas.
+                  </div>
+                  <Contador onAdd={() => addToCart('Lechuga Española.')} />
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-title">Mizuna Verde</div>
+                <div className="card-content">
+                  <img src={mizuna} />
+                  <div style={{ fontSize: "80%" }}>
+                    Aporta numerosos beneficios anticancerígenos y cantidades grandes de vitamina A y C, esenciales para que el sistema inmunológico funcione bien.
+                  </div>
+                  <Contador onAdd={() => addToCart('Mizuna Verde.')} />
+                </div>
+              </div>
+
             </div>
           </Card>
-          <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Ordenes en proceso:</h2>
+          <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '15px' }}>Historial de solicitudes:</h2>
           <Card>
-            <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-              <img src={sol} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-              <div>
-                <h4 style={{ margin: "0", marginBottom: "5px" }}>Refill de almácigos:</h4>
-                <ul style={{ margin: "0", padding: "0", listStyleType: "disc" }}>
-                  <li>OS1234</li>
-                  <li>En proceso</li>
-                  <li>Entrega: 25/04/2024</li>
-                  <li>Antartica</li>
-                </ul>
-              </div>
-            </div>
-            <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-              <img src={sol} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-              <div>
-                <h4 style={{ margin: "0", marginBottom: "5px" }}>Refill de fertilizantes:</h4>
-                <ul style={{ margin: "0", padding: "0", listStyleType: "disc" }}>
-                  <li>OS423443</li>
-                  <li>En proceso</li>
-                  <li>Entrega: 26/04/2024</li>
-                  <li>Antartica</li>
-                </ul>
-              </div>
-            </div>
-          </Card>
-          <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Historial:</h2>
-          <Card>
-            <ul style={{ marginTop: "0", marginBottom: "0", listStyleType: "disc" }}>
-              <li>OS423443</li>
-              <li>En proceso</li>
-              <li>Entrega: 26/04/2024</li>
-              <li>Antartica</li>
+            <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'disc' }}>
+              <li>26/06/2023: Lechuga Canasta, Acelga, Rúcula.</li>
+              <li>26/05/2023: Cebolln, Rúcula, Lechuga Milanesa.</li>
+              <li>02/04/2023: Rumex, Espinaca, Acelga. </li>
+              <li>23/04/2032: Espinaca, Kale, Mizuna Morada. </li>
             </ul>
           </Card>
         </div>
       </div>
+      <div className="carrito-icon" onClick={handleCartToggle} style={{ marginBottom: "80px", marginRight: "7px" }}>
+        <img src={ShoppingCartIcon} style={{ width: "65px" }} />
+      </div>
+      {isCartOpen && <Carrito items={cartItems} onClose={handleCartToggle} />}
     </div>
   );
 }

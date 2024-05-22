@@ -1,16 +1,26 @@
-import "./styles.css";
-
-import Card from "../components/Card";
-import fertilizante from "../../assets/Fertilizante.png";
-import hoja from "../../assets/hoja.png";
-import relleno from "../../assets/Relleno.png"
-import Contador from "../components/Contador"
+import { useEffect, useState } from 'react';
+import './styles.css';
+import Card from '../components/Card';
+import fertilizante from '../../assets/Fertilizante.png';
+import fertilizante500 from '../../assets/fertilizante500.png';
+import hoja from '../../assets/hoja.png';
+import fertilizante250 from '../../assets/fertilizante250.png';
+import Contador from '../components/Contador';
+import Carrito from '../components/Carrito';
 import StarsIcon from '@mui/icons-material/Stars';
+import ShoppingCartIcon from '../../assets/carrito.png';
+import { Link } from 'react-router-dom';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
-import { useEffect, useState } from "react";
+interface CartItem {
+  name: string;
+  quantity: number;
+}
 
 export default function App() {
   const [showCover, setShowCover] = useState(true);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,51 +30,73 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  const addToCart = (name: string) => {
+    setCartItems(prevItems => {
+      const itemIndex = prevItems.findIndex(item => item.name === name);
+      if (itemIndex !== -1) {
+        const updatedItems = [...prevItems];
+        updatedItems[itemIndex].quantity += 1;
+        return updatedItems;
+      } else {
+        return [...prevItems, { name, quantity: 1 }];
+      }
+    });
+  };
+
+  const handleCartToggle = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
-    <div className="App">
-      {showCover && (
-        <div className="green-screen"></div>
-      )}
-      <div className="App">
+    <div >
+      {showCover && <div className="green-screen"></div>}
+      <div >
         <div className="headerBackground">
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <img src={fertilizante} width="60px" style={{ fontSize: "60px", color: "#ffffff" }} />
-            <h2 style={{ color: "#f5f5f5" }}>Refill</h2>
+          <div className="header-content">
+            <Link to="/in/refill">
+              <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
+            </Link>
+            <img src={fertilizante} width="60px" />
+            <h2>Refill</h2>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <div style={{ color: "#f5f5f5" }}>¡Aquí puedes seleccionar los distintos fertilizantes que tienes disponibles!</div>
+          <div className="header-content">
+            <div>¡Aquí puedes seleccionar los distintos fertilizantes que tienes disponibles!</div>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <img src={hoja} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>AquaPlants 3 MINI.</div>
+          <div className="header-content">
+            <img src={hoja} width="30px" />
+            <div>AquaPlants 3 MINI.</div>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <StarsIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Plan de suscripción premium.</div>
+          <div className="header-content">
+            <StarsIcon style={{ fontSize: '30px', color: '#ffffff', width: '30px' }} />
+            <div>Plan de suscripción premium.</div>
           </div>
         </div>
         <div className="wrapper">
-          <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona el producto que desees:</h2>
+          <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '20px' }}>Selecciona el producto que desees:</h2>
           <Card>
-
-            <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-              <img src={relleno} width="35%" style={{ alignSelf: "center" }} />
-              <div style={{ fontSize: "75%" }}>
-                <div style={{ fontWeight: "bold" }}>
-                  Fertilizante AyB Vegetativo (250 ml)
+            <div className="card-container">
+              <div className="card">
+                <div className="card-title">Fertilizante AyB Vegetativo (250 ml)</div>
+                <div className="card-content">
+                  <img src={fertilizante250} />
+                  <div style={{ fontSize: "80%" }}>Estimula el crecimiento de los almácigos con nutrientes esenciales.</div>
+                  <Contador onAdd={() => addToCart('Fertilizante AyB Vegetativo (250 ml)')} />
                 </div>
-                <div>
-                  Promueve el rápido crecimiento en almácigos, proporcionando nutrientes esenciales para un desarrollo óptimo del cultivo.
-                </div>
-
               </div>
-              <Contador />
+              <div className="card" style={{ position: 'relative' }}>
+                <div className="card-title">Fertilizante AyB Vegetativo (500 ml)</div>
+                <div className="card-content">
+                  <img src={fertilizante500} />
+                  <div style={{ fontSize: "75%" }}>Estimula el crecimiento de los almácigos con nutrientes esenciales.</div>
+                  <Contador onAdd={() => addToCart('Fertilizante AyB Vegetativo (500 ml)')} />
+                </div>
+                <div style={{ fontSize: "95%" }} className="overlay">No disponible con tu suscripción.</div>
+              </div>
             </div>
-
           </Card>
-          <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Historial de solicitudes:</h2>
+          <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '15px' }}>Historial de solicitudes:</h2>
           <Card>
-            <ul style={{ marginTop: "0", marginBottom: "0", listStyleType: "disc" }}>
+            <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'disc' }}>
               <li>26/06/2023: Fertilizante AyB Vegetativo (500 ml)</li>
               <li>26/05/2023: Fertilizante AyB Vegetativo (250 ml)</li>
               <li>02/04/2023: Fertilizante AyB Vegetativo (500 ml)</li>
@@ -73,6 +105,10 @@ export default function App() {
           </Card>
         </div>
       </div>
+      <div className="carrito-icon" onClick={handleCartToggle} style={{ marginBottom: "80px", marginRight: "7px" }}>
+        <img src={ShoppingCartIcon} style={{ width: "65px" }} />
+      </div>
+      {isCartOpen && <Carrito items={cartItems} onClose={handleCartToggle} />}
     </div>
   );
 }

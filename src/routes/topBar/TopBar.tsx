@@ -20,13 +20,13 @@ const TopBar = () => {
 						<ShoppingCartIcon />
 					</Link>
 					<Link to="/in/refill" className={styles.button}>
-						<OpacityIcon fontSize="large"/>
+						<OpacityIcon fontSize="large" />
 					</Link>
 					<Link to="/in/mail" className={styles.button}>
 						<MailIcon />
 					</Link>
 					<Link to="/in/user" className={styles.button}>
-						<AccountCircleIcon/>
+						<AccountCircleIcon />
 					</Link>
 				</div>
 			</div>

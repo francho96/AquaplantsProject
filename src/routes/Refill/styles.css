@@ -5,6 +5,7 @@
   margin: auto;
   justify-content: center;
   width: 80%;
+  padding: 4px;
 }
 
 .form-wrapper {
@@ -29,7 +30,7 @@
   padding: 10px;
   border-radius: 5px;
   width: 100%;
-  background-color:  #046c34;
+  background-color: #046c34;
   color: aliceblue;
 }
 
@@ -78,4 +79,143 @@
   background-color: #2a653b;
   z-index: 10;
   animation: slide-up 1s forwards;
+}
+
+
+.green-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0, 128, 0);
+  z-index: 1000;
+}
+
+
+.card-container {
+  padding: 4px;
+}
+
+.card {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.card-content {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.card-content img {
+  width: 32%;
+  align-self: center;
+}
+
+.card-content div {
+  line-height: 1.3;
+  font-size: 95%;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.89);
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 100%;
+  border-radius: 10px;
+}
+
+.header-content {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header-content img,
+.header-content div {
+  font-size: 95%;
+  color: #f5f5f5;
+}
+
+.carrito-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carrito-popup {
+  position: fixed;
+  top: 5%;
+  left: 2%;
+  bottom: 5%;
+  right: 2%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 96%;
+  height: 80%;
+  overflow-y: center;
+  z-index: 1000;
+}
+
+.carrito-header {
+  padding: 10px;
+}
+
+.cerrar-btn {
+  background: #2a653b;
+  border: none;
+  font-size: 13px;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.aceptar-btn {
+  background: #2a653b;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  left: 30%;
+  right: 30%;
+}
+
+.carrito-content {
+  border-radius: 5px;
+  font-size: large;
+
 }

@@ -49,18 +49,20 @@ export default function App() {
             <div style={{ width: "100%", display: "flex", justifyContent: "center", textAlign: "center" }}>
               <div style={{ width: "70%", display: "flex", gap: "10px", justifyContent: "center" }}>
                 <Card>
-                <Link to="/in/refill/fertilizante" >
-                  <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
-                    <img src={fertilizante} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
-                    <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Fertilizante</div>
-                  </div>
+                  <Link to="/in/refill/fertilizante" >
+                    <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
+                      <img src={fertilizante} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
+                      <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Fertilizante</div>
+                    </div>
                   </Link>
                 </Card>
                 <Card>
-                  <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
-                    <img src={hoja} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
-                    <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Almácigos</div>
-                  </div>
+                  <Link to="/in/refill/almacigo" >
+                    <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
+                      <img src={hoja} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
+                      <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Almácigos</div>
+                    </div>
+                  </Link>
                 </Card>
               </div>
             </div>

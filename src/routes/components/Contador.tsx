@@ -1,12 +1,17 @@
-import agregar from "../../assets/agregar.png"
-import sacar from "../../assets/sacar.png"
-import React, { useState } from 'react';
+import { useState } from 'react';
+import agregar from '../../assets/agregar.png';
+import sacar from '../../assets/sacar.png';
 
-const Contador: React.FC = () => {
+interface ContadorProps {
+  onAdd: () => void;
+}
+
+const Contador: React.FC<ContadorProps> = ({ onAdd }) => {
   const [contador, setContador] = useState(1);
 
   const aumentarContador = () => {
     setContador(contador + 1);
+    onAdd();
   };
 
   const disminuirContador = () => {
@@ -16,13 +21,13 @@ const Contador: React.FC = () => {
   };
 
   return (
-    <div style={{ display: "flex", gap: "5px", alignItems: "flex-end" }}>
+    <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
       <div onClick={disminuirContador}>
-        <img src={sacar} style={{ width: "40%", alignSelf: "end", cursor: "pointer" }} alt="Sacar" />
+        <img src={sacar} style={{ width: '18px', cursor: 'pointer' }} alt="Sacar" />
       </div>
-      <div>{contador}</div>
+      <div style={{ fontSize: '20px' }}>{contador}</div>
       <div onClick={aumentarContador}>
-        <img src={agregar} style={{ width: "40%", alignSelf: "end", cursor: "pointer" }} alt="Agregar" />
+        <img src={agregar} style={{ width: '18px', cursor: 'pointer' }} alt="Agregar" />
       </div>
     </div>
   );
