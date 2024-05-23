@@ -2,13 +2,21 @@ import "./styles.css";
 import AquaplantsLogo from "../../assets/Logo_AquaPlants_letraverde_fondotransparente.png"
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function App() {
 
   const [entering, setEntering] = useState(false)
-  
+  const [showCover, setShowCover] = useState(true)
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCover(false);
+    }, 1000);
+  
+    return () => clearTimeout(timer);
+  }, []);
+  
   const handleEnter = () => {
     setEntering(!entering);
     setTimeout(() => {
@@ -18,7 +26,11 @@ export default function App() {
 
   return (
     <div className="App">
+      {showCover && (
+          <div className="green-screen"></div>
+        )}
       <div className="wrapper">
+        
         <div className={entering ? "dummyBackgroundEntering" : "dummyBackground"}>
           
         </div>
