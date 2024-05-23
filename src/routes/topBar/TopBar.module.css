@@ -67,8 +67,25 @@
 	animation: slide-up 1s forwards;
 }
 
+.enterAnimation {
+	background-color: #2a653b;
+	color: aliceblue;
+	border-radius: 5px;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0px;
+	border-radius: 20px;
+	animation: slide-up2 1s forwards;
+}
+
 @keyframes slide-up {
 	0% { transform: translateY(100%); }
 	50% { transform: translateY(0%); }
+	100% { transform: translateY(100%); }
+  }
+
+  @keyframes slide-up2 {
+	0% { transform: translateY(0%); }
 	100% { transform: translateY(100%); }
   }
