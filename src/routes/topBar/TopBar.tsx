@@ -4,11 +4,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MailIcon from '@mui/icons-material/Mail';
 import OpacityIcon from '@mui/icons-material/Opacity';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
 	const [transition, setTransition] = useState(false);
+	const [enterAnimation, setEnterAnimation] = useState(false);
 	const [active, setActive] = useState(0);
 	const navigate = useNavigate();
 	const toggleAnimation = () => {
@@ -17,7 +18,12 @@ const TopBar = () => {
 			setTransition(false);
 		}, 1000);
 	}
-
+	useEffect(() => {
+		setEnterAnimation(true);
+		setTimeout(() => {
+			setEnterAnimation(false);
+		}, 1000);
+	}, [])
 	const redirect = (path: string, active: number) => {
 		if (transition) return "";
 		toggleAnimation();
@@ -31,6 +37,9 @@ const TopBar = () => {
 		{transition && (
           <div className={styles.transitionScreen}></div>
         )}
+		{enterAnimation && (
+			<div className={styles.enterAnimation}></div>
+		)}
 			<div className={styles.fondo}>
 				<div className={styles.subButton}></div>
 				<div className={styles.container}>
