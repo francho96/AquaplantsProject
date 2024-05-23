@@ -7,7 +7,7 @@
   width: 100%;
   overflow: hidden;
   z-index: 110;
-  top: calc(100vh - 100px);
+  top: calc(100vh - 70px);
 }
 
 .sidebar {
