@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
 	const [transition, setTransition] = useState(false);
-	const [enterAnimation, setEnterAnimation] = useState(false);
+	const [enterAnimation, setEnterAnimation] = useState(true);
 	const [active, setActive] = useState(0);
 	const navigate = useNavigate();
 	const toggleAnimation = () => {
@@ -19,7 +19,6 @@ const TopBar = () => {
 		}, 1000);
 	}
 	useEffect(() => {
-		setEnterAnimation(true);
 		setTimeout(() => {
 			setEnterAnimation(false);
 		}, 1000);
