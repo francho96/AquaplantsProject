@@ -23,13 +23,14 @@
 	align-content: center;
 	height: 100%;
 	width: 100%;
-
+	z-index: 99;
   }
 
 .fondo {
-	height: 100px;
+	height: 70px;
 	background-color: #2a653b;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
@@ -45,3 +46,29 @@
 	align-items: center;
 	gap: 0px;
 }
+
+.subButton {
+	background-color: #2a653b;
+	color: aliceblue;
+	border-radius: 5px;
+	height: 20px;
+	width: 100%;
+}
+
+.transitionScreen {
+	background-color: #2a653b;
+	color: aliceblue;
+	border-radius: 5px;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0px;
+	border-radius: 20px;
+	animation: slide-up 1s forwards;
+}
+
+@keyframes slide-up {
+	0% { transform: translateY(100%); }
+	50% { transform: translateY(0%); }
+	100% { transform: translateY(100%); }
+  }

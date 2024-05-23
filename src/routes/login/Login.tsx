@@ -38,11 +38,12 @@ export default function App() {
           <div className={entering ? "disappear" : "appear"}>
             <Card>
               <div style={{padding: "10px"}}>
-              <input className="input" id="email" placeholder="Email" type="email" style={{marginBottom: "10px"}} />
+              <input className="input" id="email" disabled={entering} placeholder="Email" type="email" style={{marginBottom: "10px"}} />
 
               <input
                 className="input"
                 id="password"
+                disabled={entering}
                 placeholder="Contraseña"
                 type="password"
               />
@@ -50,7 +51,7 @@ export default function App() {
                 <a className="changePassword">¿Olvidaste la contraseña?</a>
               </div>
               <div className="lower-form">
-              <button  className="button" style={{textAlign: "center"}} onClick={handleEnter}>
+              <button  disabled={entering} className="button" style={{textAlign: "center"}} onClick={handleEnter}>
                 Entrar
               </button>
                 <span>
