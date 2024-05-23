@@ -1,5 +1,4 @@
 import "../styles.css";
-import Header from "../components/Header";
 import Card from "../components/Card";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
