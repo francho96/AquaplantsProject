@@ -6,26 +6,12 @@ import StarsIcon from '@mui/icons-material/Stars';
 import raiz from "../../assets/raiz.png";
 import fertilizante from "../../assets/Fertilizante.png";
 import hoja from "../../assets/hoja.png";
-import { useEffect, useState } from "react";
-
 
 export default function App() {
 
-  const [showCover, setShowCover] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCover(false);
-    }, 1000);
-  
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="App">
-      {showCover && (
-        <div className="green-screen"></div>
-      )}
       <div className="headerBackground">
         <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
           <AccountCircleIcon style={{fontSize: "60px", color: "#ffffff"}}/>

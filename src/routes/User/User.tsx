@@ -4,25 +4,16 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import StarsIcon from '@mui/icons-material/Stars';
 import raiz from "../../assets/raiz.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function App() {
 
-  const [showCover, setShowCover] = useState(true);
   const [entering, setEntering] = useState(true);
 
 
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCover(false);
-    }, 1000);
-  
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleRedirect = () => {
     setEntering(!entering);
@@ -32,9 +23,6 @@ export default function App() {
   }
   return (
     <div className="App">
-      {showCover && (
-        <div className="green-screen"></div>
-      )}
       <div className="headerBackground">
         <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
           <AccountCircleIcon style={{fontSize: "60px", color: "#ffffff"}}/>

@@ -6,24 +6,11 @@ import hoja from "../../assets/hoja.png";
 import sol from "../../assets/sol.png";
 import planta_nuevo from "../../assets/planta_otra_vez.png";
 
-import { useEffect, useState } from "react";
 
 export default function App() {
-  const [showCover, setShowCover] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCover(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="App">
-      {showCover && (
-        <div className="green-screen"></div>
-      )}
       <div className="App">
         <div className="headerBackground">
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
