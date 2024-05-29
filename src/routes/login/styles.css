@@ -12,7 +12,7 @@
 .dummyBackground {
   background-color: #fff8e0;
   height: 80vh;
-  position: absolute;
+  position: fixed;
   width: 100vw;
   top: -10vh;
   border-radius: 20px;
@@ -23,7 +23,7 @@
 .dummyBackgroundEntering {
   background-color: #fff8e0;
   height: 0vh;
-  position: absolute;
+  position: fixed;
   width: 100vw;
   top: -10vh;
   border-radius: 20px;
@@ -44,9 +44,9 @@
 .dummyBackground2Entering {
   background-color: #2a653b;
   height: 100vh;
-  width: 100vw;
+  width: 150vw;
   top: 0vh;
-  position: absolute;
+  position: fixed;
   z-index: -2;
 }
 
