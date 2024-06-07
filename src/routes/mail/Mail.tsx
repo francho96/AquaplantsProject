@@ -6,8 +6,21 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HistoryIcon from '@mui/icons-material/History';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-export default function App() {
+import SendIcon from '@mui/icons-material/Send';
+import { useState } from "react";
+import { TextField } from "@mui/material";
 
+export default function App() {
+  const [chatOpened, setChatOpened] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<string[]>([]); // Provide initial value as an empty array
+  const sendMessage = () => {
+    setMessages([...messages, message])
+    setMessage("");
+  }
+
+
+  
   return (
     <div className="App">
       <div className="App">
@@ -28,6 +41,38 @@ export default function App() {
             <div style={{ color: "#f5f5f5" }}>Revisa tus consultas anteriores.</div>
           </div>
         </div>
+        
+        {chatOpened ? (
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "calc(100vh - 320px)", margin: "10px"}}>
+            <div style={{ display: "flex", height: "100%", width: "100%", overflowY: "auto", flexDirection: "column"}}>
+              {messages.map((msg) => (
+                <TextField
+                  id="outlined-multiline-flexible"
+                  label="Franco Barría"
+                  value={msg}
+                  multiline
+                  style={{marginTop: "10px"}}
+                />
+              ))}
+            
+            </div>
+            <div style={{ display: "flex", gap: "20px", width: "auto", alignContent: "center", marginTop: "20px"}}>
+              <TextField
+                id="outlined-multiline-static"
+                label="Mensaje"
+                multiline
+                rows={2}
+                focused
+                color="success"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                defaultValue=""
+                style={{color: "#2a653b", width: "100%"}}
+              />
+              <SendIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px", margin:"auto" }} onClick={() => sendMessage()} />
+            </div>
+          </div>
+        ) : (
         <div className="wrapper">
           <Card>
             <h3 style={{ paddingBottom: "0", marginTop: "0", marginBottom: "0", textAlign: "center" }}>¿Necesitas ayuda?</h3>
@@ -39,7 +84,7 @@ export default function App() {
                 <p style={{ fontWeight: "bold" }}>Cuentanos tu problema y nosotros te ayudamos.</p>
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "40px" }} />
+                <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "40px" }} onClick={() => setChatOpened(true)}/>
               </div>
             </div>
           </Card>
@@ -72,7 +117,7 @@ export default function App() {
           <Card>
             <p style={{ textAlign: "center" }}>Aquí encontrarás todas las consultas que has creado.</p>
           </Card>
-        </div>
+        </div>)}
       </div>
     </div>
   );
