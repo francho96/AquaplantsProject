@@ -22,7 +22,7 @@ export default function App() {
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <img src={raiz} width="30px" style={{ margin: "0 15px 0 15px" }} />
-          <div style={{ color: "#f5f5f5" }}>Torre de 12 pisos</div>
+          <div style={{ color: "#f5f5f5" }}>Torre de 3 pisos</div>
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <LocationOnIcon style={{ fontSize: "30px", color: "#ffffff", width: "60px" }} />
@@ -78,17 +78,31 @@ export default function App() {
             </div>
           </div>
         </Card>
-        <div style={{ width: "100%", display: "flex", gap: "20px" }}>
+        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona la torre para realizar una recarga:</h2>
           <Card>
-            <img src={fertilizante} width="50px" style={{ margin: "auto", marginBottom: "10px", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
-            Refill Fertilizante
+            <h4 style={{ marginTop: "0", marginBottom: "0", textAlign: "center" }}>Torre AquaPlants 3 MINI</h4>
+            <div style={{ width: "100%", display: "flex", justifyContent: "center", textAlign: "center" }}>
+              <div style={{ width: "70%", display: "flex", gap: "10px", justifyContent: "center" }}>
+                <Card>
+                  <Link to="/in/refill/fertilizante" >
+                    <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
+                      <img src={fertilizante} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
+                      <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Fertilizante</div>
+                    </div>
+                  </Link>
+                </Card>
+                <Card>
+                  <Link to="/in/refill/almacigo" >
+                    <div style={{ display: "flex", alignItems: "center", padding: "0px", backgroundColor: "#f5f5f5" }}>
+                      <img src={hoja} width="35px" style={{ marginLeft: "0", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
+                      <div style={{ fontSize: "75%", fontWeight: "bold" }}>Refill Almácigos</div>
+                    </div>
+                  </Link>
+                </Card>
+              </div>
+            </div>
           </Card>
-          <Card>
-            <img src={hoja} width="50px" style={{ margin: "auto", marginBottom: "10px", filter: "opacity(0.5) drop-shadow(0 0 0 green)" }} />
-            Refill Almácigos
-          </Card>
-        </div>
-        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Tu producto</h2>
+        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Estado de tu producto:</h2>
         <Card>
           <Link to="/in/user/product">
             <div style={{ width: "100%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
@@ -104,6 +118,7 @@ export default function App() {
             </div>
           </Link>
         </Card>
+        
       </div>
     </div>
   );
