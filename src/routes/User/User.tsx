@@ -1,12 +1,15 @@
 import "../styles.css";
 import Card from "../components/Card";
+import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import StarsIcon from '@mui/icons-material/Stars';
-import raiz from "../../assets/raiz.png";
+import InfoIcon from '@mui/icons-material/Info';
+import EditIcon from '@mui/icons-material/Edit';
+import planta from '../../assets/planta-verde.png'
+import premium from '../../assets/premium.png'
 import { useState } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function App() {
 
@@ -24,28 +27,67 @@ export default function App() {
   return (
     <div className="App">
       <div className="headerBackground">
-        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
-          <AccountCircleIcon style={{fontSize: "60px", color: "#ffffff"}}/>
-          <h2 style={{color: "#f5f5f5"}}>Configuración<br/>Franco Barría</h2>
+
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <AccountCircleIcon style={{ fontSize: "60px", color: "#ffffff" }} />
+          <h2 style={{ color: "#f5f5f5" }}>Configuración<br />Franco Barría</h2>
         </div>
-        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
-          <img src={raiz} width="30px" style={{margin: "0 15px 0 15px"}}/>
-          <div style={{color: "#f5f5f5"}}>Torre de 12 pisos</div>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <div style={{ color: "#f5f5f5" }}>En esta seccion puedes ver todos los datos asociados a tu cuenta.</div>
         </div>
-        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
-          <LocationOnIcon style={{fontSize: "30px", color: "#ffffff", width: "60px"}}/>
-          <div style={{color: "#f5f5f5"}}>Despacho a Antártica Chilena</div>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <InfoIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
+          <div style={{ color: "#f5f5f5" }}>Tus torres, suscripción y más.</div>
         </div>
-        <div style={{display: "flex", gap: "10px", alignItems: "center"}}>
-          <StarsIcon style={{fontSize: "30px", color: "#ffffff",  width: "60px"}}/>
-          <div style={{color: "#f5f5f5"}}>Plan de suscripción premium</div>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <EditIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
+          <div style={{ color: "#f5f5f5" }}>Puedes editar tus datos personales.</div>
         </div>
       </div>
       <div className="wrapper">
+        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Información de la cuenta:</h2>
+        <Link to="/in/user/account">
+          <Card>
+            <div style={{ width: "90%", display: "flex", justifyContent: "space-around", alignSelf: "center" }}>
+              <p style={{ textAlign: "center", color: "#444444" }}>Consulta y modifica la información de tu cuenta.</p>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <InfoOutlinedIcon style={{ fontSize: "50px", color: "#2a653b", width: "40px" }} />
+              </div>
+            </div>
+          </Card>
+        </Link>
+        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona tu producto:</h2>
         <Card>
-          En este sector deben aparecer los datos del cliente, los cuales pueden modificarse.
-          <Button variant="contained" color="error" style={{margin: "10px"}} onClick={() => handleRedirect()}>
-            Salir de la cuenta
+          <Link to="/in/user/product">
+            <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img src={planta} style={{ fontSize: "40px", color: "#2a653b", width: "45px" }} />
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <p style={{ fontWeight: "bold" }}>Torre AquaPlants 3 MINI</p>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <InfoOutlinedIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
+              </div>
+            </div>
+          </Link>
+        </Card>
+        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona tu suscripción:</h2>
+        <Card>
+          <Link to="/in/user/suscription">
+            <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "2px", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img src={premium} style={{ fontSize: "40px", color: "#2a653b", width: "40px" }} />
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <p style={{ fontWeight: "bold" }}>Torre AquaPlants 3<br />  MINI</p>
+              </div>
+            </div>
+          </Link>
+        </Card>
+        <Card>
+          <Button variant="contained" color="error" style={{ margin: "10px" }} onClick={() => handleRedirect()}>
+            Cerrar Sesión
           </Button>
         </Card>
       </div>

@@ -10,7 +10,7 @@
 }
 
 .dummyBackground {
-  background-color: #fff8e0;
+  background-color: #fdffebe5;
   height: 80vh;
   position: fixed;
   width: 100vw;
@@ -21,7 +21,7 @@
 }
 
 .dummyBackgroundEntering {
-  background-color: #fff8e0;
+  background-color: #fdffebe5;
   height: 0vh;
   position: fixed;
   width: 100vw;
@@ -38,7 +38,8 @@
   top: 50vh;
   position: fixed;
   z-index: -2;
-  transition: 1s;;
+  transition: 1s;
+  ;
 }
 
 .dummyBackground2Entering {
@@ -63,8 +64,13 @@
 }
 
 @keyframes slide-up {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-100%); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
 }
 
 .wrapper {
@@ -101,7 +107,7 @@
   padding: 10px;
   border-radius: 5px;
   width: 100%;
-  background-color:  #2a653b;
+  background-color: #2a653b;
   color: aliceblue;
 }
 
