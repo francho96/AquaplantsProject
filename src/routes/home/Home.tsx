@@ -9,6 +9,7 @@ import hoja from "../../assets/hoja.png";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import planta from '../../assets/planta-verde.png'
 import { Link } from 'react-router-dom';
+import HelpIcon from '@mui/icons-material/Help';
 
 export default function App() {
 
@@ -118,7 +119,19 @@ export default function App() {
             </div>
           </Link>
         </Card>
-        
+        <Card>
+          <Link to="/in/mail">
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-around",  border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+              
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <p style={{ fontWeight: "bold" }}>¿Necesitas ayuda?</p>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <HelpIcon style={{ fontSize: "50px", color: "#2a653b", width: "40px" }} />
+              </div>
+            </div>
+          </Link>
+        </Card>
       </div>
     </div>
   );
