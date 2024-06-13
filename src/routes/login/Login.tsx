@@ -25,7 +25,6 @@ export default function App() {
 
     const handleEnter = async () => {
         navigate('/in');
-        /*
         try {
           const url = import.meta.env.VITE_APP_XDD;
           console.log(url)
@@ -38,7 +37,7 @@ export default function App() {
         } catch (error) {
           console.log("no funciono");
           setError(true);
-        }*/
+        }
     };
 
     return (

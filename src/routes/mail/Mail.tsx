@@ -19,7 +19,9 @@ export default function App() {
 
   const sendMessage = () => {
     setMessages([...messages, message])
-    messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    if (messagesEndRef.current) {
+      (messagesEndRef.current as HTMLElement).scrollTop = (messagesEndRef.current as HTMLElement).scrollHeight;
+    }
     setMessage("");
   }
 
