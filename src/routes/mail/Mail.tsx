@@ -23,8 +23,6 @@ export default function App() {
     setMessage("");
   }
 
-
-  
   return (
     <div className="App">
       <div className="App">
@@ -52,7 +50,7 @@ export default function App() {
           <div><ArrowBack style={{ color: "white", fontSize: "30px"}} onClick={() => setChatOpened(false)}/></div>
           )}
         </div>
-        
+
         {chatOpened ? (
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "calc(100vh - 320px)", padding: "10px", boxSizing: "border-box"}}>
             <div style={{ display: "flex", height: "100%", overflowY: "auto", flexDirection: "column"}} ref={messagesEndRef}>
@@ -73,9 +71,9 @@ export default function App() {
                   disabled
                 />
               ))}
-            
+
             </div>
-            <div style={{ display: "flex", gap: "20px", width: "auto", alignContent: "center", marginTop: "20px"}}>
+            <div style={{ display: "flex", gap: "20px", width: "auto", alignContent: "center", marginTop: "20px" }}>
               <TextField
                 id="outlined-multiline-static"
                 label="Mensaje"
@@ -86,57 +84,57 @@ export default function App() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 defaultValue=""
-                style={{color: "#2a653b", width: "100%"}}
+                style={{ color: "#2a653b", width: "100%" }}
               />
-              <SendIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px", margin:"auto" }} onClick={() => sendMessage()} />
+              <SendIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px", margin: "auto" }} onClick={() => sendMessage()} />
             </div>
           </div>
         ) : (
-        <div className="wrapper">
-          <Card>
-            <h3 style={{ paddingBottom: "0", marginTop: "0", marginBottom: "0", textAlign: "center" }}>¿Necesitas ayuda?</h3>
-            <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", marginBottom: "0", margin: "0" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <LiveHelpIcon style={{ fontSize: "100px", color: "#2a653b", width: "70px" }} />
+          <div className="wrapper">
+            <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>¿Necesitas ayuda?</h2>
+            <Card>
+              <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", marginBottom: "0", margin: "0" }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <LiveHelpIcon style={{ fontSize: "100px", color: "#2a653b", width: "70px" }} />
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p style={{ fontWeight: "bold" }}>Cuentanos tu problema y nosotros te ayudamos.</p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "40px" }} onClick={() => setChatOpened(true)} />
+                </div>
               </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <p style={{ fontWeight: "bold" }}>Cuentanos tu problema y nosotros te ayudamos.</p>
+            </Card>
+            <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Tus consultas:</h2>
+            <Card>
+              <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "2.5px", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <QuestionAnswerIcon style={{ fontSize: "40px", color: "#2a653b", width: "70px" }} />
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p style={{ fontWeight: "bold" }}>Consulta 1</p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
+                </div>
               </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "40px" }} onClick={() => setChatOpened(true)}/>
+              <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "2.5px", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <QuestionAnswerIcon style={{ fontSize: "40px", color: "#2a653b", width: "70px" }} />
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p style={{ fontWeight: "bold" }}>Consulta 2</p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
+                </div>
               </div>
-            </div>
-          </Card>
-          <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Tus consultas:</h2>
-          <Card>
-            <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <QuestionAnswerIcon style={{ fontSize: "40px", color: "#2a653b", width: "70px" }} />
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <p style={{ fontWeight: "bold" }}>Consulta 1</p>
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
-              </div>
-            </div>
-            <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <QuestionAnswerIcon style={{ fontSize: "40px", color: "#2a653b", width: "70px" }} />
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <p style={{ fontWeight: "bold" }}>Consulta 2</p>
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
-              </div>
-            </div>
-          </Card>
-          <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Historial:</h2>
-          <Card>
-            <p style={{ textAlign: "center" }}>Aquí encontrarás todas las consultas que has creado.</p>
-          </Card>
-        </div>)}
+            </Card>
+            <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Historial:</h2>
+            <Card>
+              <p style={{ textAlign: "center" }}>Aquí encontrarás todas las consultas que has creado.</p>
+            </Card>
+          </div>)}
       </div>
     </div>
   );

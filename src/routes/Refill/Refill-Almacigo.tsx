@@ -39,6 +39,12 @@ export default function App() {
 
   const addToCart = (name: string) => {
     setCartItems(prevItems => {
+      const totalQuantity = prevItems.reduce((acc, item) => acc + item.quantity, 0);
+      if (totalQuantity >= 12) {
+        alert('Has alcanzado el límite de 12 almácigos.');
+        return prevItems;
+      }
+
       const itemIndex = prevItems.findIndex(item => item.name === name);
       if (itemIndex !== -1) {
         const updatedItems = [...prevItems];
@@ -49,6 +55,24 @@ export default function App() {
       }
     });
   };
+
+  const removeFromCart = (name: string) => {
+    setCartItems(prevItems => {
+      const itemIndex = prevItems.findIndex(item => item.name === name);
+      if (itemIndex !== -1) {
+        const updatedItems = [...prevItems];
+        if (updatedItems[itemIndex].quantity > 0) {
+          updatedItems[itemIndex].quantity -= 1;
+        }
+        if (updatedItems[itemIndex].quantity === 0) {
+          updatedItems.splice(itemIndex, 1);
+        }
+        return updatedItems;
+      }
+      return prevItems;
+    });
+  };
+
 
   const handleCartToggle = () => {
     setIsCartOpen(!isCartOpen);
@@ -90,7 +114,13 @@ export default function App() {
                   <div style={{ fontSize: "80%" }}>
                     Compuesta por vitamina C, Omega 3 y Omega 6, además de incluir altos porcentajes de ácidos grasos.
                   </div>
-                  <Contador onAdd={() => addToCart('Lechuga Milanesa.')} />
+                  <Contador
+                    name="Lechuga Milanesa"
+                    initialQuantity={cartItems.find(item => item.name === 'Lechuga Milanesa')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}
+                  />
+
                 </div>
               </div>
 
@@ -101,7 +131,11 @@ export default function App() {
                   <div style={{ fontSize: "80%" }}>
                     Rica en sodio, potasio, magnesio, yodo, aluminio, manganeso y níquel y contiene vitaminas A, B1 y C.
                   </div>
-                  <Contador onAdd={() => addToCart('Lechuga Marina.')} />
+                  <Contador
+                    name="Lechuga Marina Verde"
+                    initialQuantity={cartItems.find(item => item.name === 'Lechuga Marina Verde')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
               </div>
 
@@ -112,7 +146,11 @@ export default function App() {
                   <div style={{ fontSize: "80%" }}>
                     Fortalece tus huesos ya que es rica en Vitamina K, mejora la salud cardiovascular y aporta fibra dietética.
                   </div>
-                  <Contador onAdd={() => addToCart('Acelga.')} />
+                  <Contador
+                    name="Acelga"
+                    initialQuantity={cartItems.find(item => item.name === 'Acelga')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
               </div>
 
@@ -123,7 +161,11 @@ export default function App() {
                   <div style={{ fontSize: "80%" }}>
                     Ricas en fibra y alto contenido de agua. Contiene vitamina A, potasio, vitamina C, calcio, hierro y cobre.
                   </div>
-                  <Contador onAdd={() => addToCart('Lechuga Canasta.')} />
+                  <Contador
+                    name="Lechuga Canasta"
+                    initialQuantity={cartItems.find(item => item.name === 'Lechuga Canasta')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
               </div>
 
@@ -134,7 +176,11 @@ export default function App() {
                   <div style={{ fontSize: "80%" }}>
                     Fuente excelente de vitaminas K, A, C y ácido fólico. También es rica en manganeso, magnesio, hierro y vitamina B2.
                   </div>
-                  <Contador onAdd={() => addToCart('Espinaca.')} />
+                  <Contador
+                    name="Espinaca"
+                    initialQuantity={cartItems.find(item => item.name === 'Espinaca')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
               </div>
 
@@ -145,7 +191,11 @@ export default function App() {
                   <div style={{ fontSize: "80%" }}>
                     Cuida nuestro corazón porque contiene flavonoides, tiene la propiedad de disminuir el riesgo de enfermedades cardíacas.
                   </div>
-                  <Contador onAdd={() => addToCart('Lechuga Española.')} />
+                  <Contador
+                    name="Lechuga Española"
+                    initialQuantity={cartItems.find(item => item.name === 'Lechuga Española')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
               </div>
 
@@ -156,7 +206,11 @@ export default function App() {
                   <div style={{ fontSize: "80%" }}>
                     Aporta numerosos beneficios anticancerígenos y cantidades grandes de vitamina A y C, esenciales para que el sistema inmunológico funcione bien.
                   </div>
-                  <Contador onAdd={() => addToCart('Mizuna Verde.')} />
+                  <Contador
+                    name="Mizuna Verde"
+                    initialQuantity={cartItems.find(item => item.name === 'Mizuna Verde')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
               </div>
 
@@ -176,7 +230,7 @@ export default function App() {
       <div className="carrito-icon" onClick={handleCartToggle} style={{ marginBottom: "80px", marginRight: "7px" }}>
         <img src={ShoppingCartIcon} style={{ width: "65px" }} />
       </div>
-      {isCartOpen && <Carrito items={cartItems} onClose={handleCartToggle} />}
+      {isCartOpen && <Carrito items={cartItems} onClose={handleCartToggle} addToCart={addToCart} removeFromCart={removeFromCart} />}
     </div>
   );
 }

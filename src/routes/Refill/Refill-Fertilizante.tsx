@@ -32,6 +32,12 @@ export default function App() {
 
   const addToCart = (name: string) => {
     setCartItems(prevItems => {
+      const totalQuantity = prevItems.reduce((acc, item) => acc + item.quantity, 0);
+      if (totalQuantity >= 12) {
+        alert('Has alcanzado el límite de 12 almácigos.');
+        return prevItems;
+      }
+
       const itemIndex = prevItems.findIndex(item => item.name === name);
       if (itemIndex !== -1) {
         const updatedItems = [...prevItems];
@@ -43,14 +49,32 @@ export default function App() {
     });
   };
 
+  const removeFromCart = (name: string) => {
+    setCartItems(prevItems => {
+      const itemIndex = prevItems.findIndex(item => item.name === name);
+      if (itemIndex !== -1) {
+        const updatedItems = [...prevItems];
+        if (updatedItems[itemIndex].quantity > 0) {
+          updatedItems[itemIndex].quantity -= 1;
+        }
+        if (updatedItems[itemIndex].quantity === 0) {
+          updatedItems.splice(itemIndex, 1);
+        }
+        return updatedItems;
+      }
+      return prevItems;
+    });
+  };
+
+
   const handleCartToggle = () => {
     setIsCartOpen(!isCartOpen);
   };
 
   return (
-    <div >
+    <div>
       {showCover && <div className="green-screen"></div>}
-      <div >
+      <div>
         <div className="headerBackground">
           <div className="header-content">
             <Link to="/in/refill">
@@ -80,7 +104,11 @@ export default function App() {
                 <div className="card-content">
                   <img src={fertilizante250} />
                   <div style={{ fontSize: "80%" }}>Estimula el crecimiento de los almácigos con nutrientes esenciales.</div>
-                  <Contador onAdd={() => addToCart('Fertilizante AyB Vegetativo (250 ml)')} />
+                  <Contador
+                    name="Fertilizante AyB Vegetativo (250 ml)"
+                    initialQuantity={cartItems.find(item => item.name === 'Fertilizante AyB Vegetativo (250 ml)')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
               </div>
               <div className="card" style={{ position: 'relative' }}>
@@ -88,7 +116,11 @@ export default function App() {
                 <div className="card-content">
                   <img src={fertilizante500} />
                   <div style={{ fontSize: "75%" }}>Estimula el crecimiento de los almácigos con nutrientes esenciales.</div>
-                  <Contador onAdd={() => addToCart('Fertilizante AyB Vegetativo (500 ml)')} />
+                  <Contador
+                    name="Fertilizante AyB Vegetativo (500 ml)"
+                    initialQuantity={cartItems.find(item => item.name === 'Fertilizante AyB Vegetativo (500 ml)')?.quantity || 0}
+                    onAdd={addToCart}
+                    onRemove={removeFromCart}/>
                 </div>
                 <div style={{ fontSize: "95%" }} className="overlay">No disponible con tu suscripción.</div>
               </div>
@@ -108,7 +140,7 @@ export default function App() {
       <div className="carrito-icon" onClick={handleCartToggle} style={{ marginBottom: "80px", marginRight: "7px" }}>
         <img src={ShoppingCartIcon} style={{ width: "65px" }} />
       </div>
-      {isCartOpen && <Carrito items={cartItems} onClose={handleCartToggle} />}
+      {isCartOpen && <Carrito items={cartItems} onClose={handleCartToggle} addToCart={addToCart} removeFromCart={removeFromCart} />}
     </div>
   );
 }

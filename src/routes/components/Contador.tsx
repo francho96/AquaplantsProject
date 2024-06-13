@@ -1,22 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import agregar from '../../assets/agregar.png';
 import sacar from '../../assets/sacar.png';
 
 interface ContadorProps {
-  onAdd: () => void;
+  name: string;
+  initialQuantity: number;
+  onAdd: (name: string) => void;
+  onRemove: (name: string) => void;
 }
 
-const Contador: React.FC<ContadorProps> = ({ onAdd }) => {
-  const [contador, setContador] = useState(1);
+const Contador: React.FC<ContadorProps> = ({ name, initialQuantity, onAdd, onRemove }) => {
+  const [contador, setContador] = useState(initialQuantity);
+
+  useEffect(() => {
+    setContador(initialQuantity);
+  }, [initialQuantity]);
 
   const aumentarContador = () => {
     setContador(contador + 1);
-    onAdd();
+    onAdd(name);
   };
 
   const disminuirContador = () => {
     if (contador > 0) {
       setContador(contador - 1);
+      onRemove(name);
     }
   };
 

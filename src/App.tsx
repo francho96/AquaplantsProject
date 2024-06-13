@@ -9,6 +9,9 @@ import User from './routes/User/User';
 import Mail from './routes/mail/Mail';
 import Fertilizante from './routes/Refill/Refill-Fertilizante';
 import Almacigo from './routes/Refill/Refill-Almacigo';
+import InfoUser from './routes/User/InfoUser'
+import InfoSuscripcion from './routes/User/InfoSuscripcion'
+import InfoProducto from './routes/User/Producto'
 
 const Login = lazy(() => import('./routes/login/Login'));
 const Root = lazy(() => import('./routes/root'));
@@ -34,6 +37,9 @@ function App() {
                             <Route path='refill/fertilizante' element={<Fertilizante />} />
                             <Route path='refill/almacigo' element={<Almacigo />} />
                             <Route path='mail' element={<Mail />} />
+                            <Route path='user/account' element={<InfoUser/>}/>
+                            <Route path='user/suscription' element={<InfoSuscripcion/>}/>
+                            <Route path='user/product' element={<InfoProducto/>}/>
                         </Route>
                     </Routes>
                 </Suspense>
