@@ -19,25 +19,27 @@ export default function App() {
                               <Link to="/in/user">
                                     <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
                               </Link>
-                              <img src={planta} style={{ fontSize: "70px", width: "70px", color: "f5f5f5" }} />
+                              <img src={planta} style={{ fontSize: "60px", width: "60px", color: "f5f5f5" }} />
                               <h2>Tu Producto</h2>
                         </div>
-                        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                              <div style={{ color: "#f5f5f5" }}></div>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                              <InfoIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-                              <div style={{ color: "#f5f5f5" }}>Información del estado de tus almácigos.</div>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                              <EditIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-                              <div style={{ color: "#f5f5f5" }}>Actualiza la información.</div>
+                        <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+                              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                    <div style={{ color: "#f5f5f5" }}>¡Cuéntanos sobre tu cultivo!</div>
+                              </div>
+                              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                    <InfoIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+                                    <div style={{ color: "#f5f5f5" }}>Información del estado de tus almácigos.</div>
+                              </div>
+                              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                    <EditIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+                                    <div style={{ color: "#f5f5f5" }}>Actualiza la información.</div>
+                              </div>
                         </div>
                   </div>
                   <div className="wrapper">
                         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>KIT TORRE AQUAPLANTS 3</h2>
                         <Card>
-                              
+
                               <div >
                                     <div style={{ marginBottom: "4px" }}>
                                           <strong>Fecha de compra:</strong> 19/04/2024
@@ -57,10 +59,10 @@ export default function App() {
                                     </div>
                               </div>
                         </Card>
-                        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop:"10px" }}>Cultivo actual</h2>
+                        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "10px" }}>Cultivo actual</h2>
                         <Card>
                               <div>
-                                    <p style={{ fontWeight: "bold", fontSize: "large",marginTop:"0px" }}>Piso 1: </p>
+                                    <p style={{ fontWeight: "bold", fontSize: "large", marginTop: "0px" }}>Piso 1: </p>
                                     <div className="almacigos">
                                           <p style={{ fontWeight: "450" }}>Almácigo 1.1</p>
                                           <select className="selector" name="opciones" defaultValue="">

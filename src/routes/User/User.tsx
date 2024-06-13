@@ -27,21 +27,22 @@ export default function App() {
   return (
     <div className="App">
       <div className="headerBackground">
-
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <AccountCircleIcon style={{ fontSize: "60px", color: "#ffffff" }} />
           <h2 style={{ color: "#f5f5f5" }}>Configuración<br />Franco Barría</h2>
         </div>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <div style={{ color: "#f5f5f5" }}>En esta seccion puedes ver todos los datos asociados a tu cuenta.</div>
-        </div>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <InfoIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-          <div style={{ color: "#f5f5f5" }}>Tus torres, suscripción y más.</div>
-        </div>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <EditIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-          <div style={{ color: "#f5f5f5" }}>Puedes editar tus datos personales.</div>
+        <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <div style={{ color: "#f5f5f5" }}>Revisa los detalles de tu cuenta aquí.</div>
+          </div>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <InfoIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+            <div style={{ color: "#f5f5f5" }}>Tus torres, suscripción y más.</div>
+          </div>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <EditIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+            <div style={{ color: "#f5f5f5" }}>Puedes editar tus datos personales.</div>
+          </div>
         </div>
       </div>
       <div className="wrapper">

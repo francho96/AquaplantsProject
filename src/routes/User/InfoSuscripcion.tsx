@@ -18,19 +18,21 @@ export default function App() {
           <Link to="/in/user">
             <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
           </Link>
-          <StarsIcon style={{ fontSize: "70px", width: "70px", color: "f5f5f5" }} />
+          <StarsIcon style={{ fontSize: "60px", width: "60px", color: "f5f5f5" }} />
           <h2>Suscripción</h2>
         </div>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <div style={{ color: "#f5f5f5" }}></div>
-        </div>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <InfoIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-          <div style={{ color: "#f5f5f5" }}>Información de tu suscripción.</div>
-        </div>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <EditOffIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-          <div style={{ color: "#f5f5f5" }}>No puedes realizar ediciones.</div>
+        <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <div style={{ color: "#2a653b" }}>-</div>
+          </div>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <InfoIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+            <div style={{ color: "#f5f5f5" }}>Información de tu suscripción.</div>
+          </div>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <EditOffIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+            <div style={{ color: "#f5f5f5" }}>No puedes realizar ediciones.</div>
+          </div>
         </div>
       </div>
       <div className="wrapper">

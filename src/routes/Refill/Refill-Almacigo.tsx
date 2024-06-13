@@ -87,19 +87,21 @@ export default function App() {
             <Link to="/in/refill">
               <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
             </Link>
-            <img src={fertilizante} width="70px" />
+            <img src={fertilizante} width="60px" />
             <h2>Refill</h2>
           </div>
-          <div className="header-content">
-            <div> ¡Aquí puedes seleccionar los distintos almácigos que tenemos disponibles!</div>
-          </div>
-          <div className="header-content">
-            <img src={hoja} width="30px" />
-            <div>AquaPlants 3 MINI.</div>
-          </div>
-          <div className="header-content">
-            <img src={raiz} style={{ fontSize: '30px', color: '#ffffff', width: '30px' }} />
-            <div>Limite de 12 almácigos.</div>
+          <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+            <div className="header-content">
+              <div> ¡Elige los almácigos disponibles aquí!</div>
+            </div>
+            <div className="header-content">
+              <img src={hoja} width="20px" />
+              <div>AquaPlants 3 MINI.</div>
+            </div>
+            <div className="header-content">
+              <img src={raiz} style={{ fontSize: '20px', color: '#ffffff', width: '20px' }} />
+              <div>Limite de 12 almácigos.</div>
+            </div>
           </div>
         </div>
         <div className="wrapper">
@@ -135,7 +137,7 @@ export default function App() {
                     name="Lechuga Marina Verde"
                     initialQuantity={cartItems.find(item => item.name === 'Lechuga Marina Verde')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
               </div>
 
@@ -150,7 +152,7 @@ export default function App() {
                     name="Acelga"
                     initialQuantity={cartItems.find(item => item.name === 'Acelga')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
               </div>
 
@@ -165,7 +167,7 @@ export default function App() {
                     name="Lechuga Canasta"
                     initialQuantity={cartItems.find(item => item.name === 'Lechuga Canasta')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
               </div>
 
@@ -180,7 +182,7 @@ export default function App() {
                     name="Espinaca"
                     initialQuantity={cartItems.find(item => item.name === 'Espinaca')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
               </div>
 
@@ -195,7 +197,7 @@ export default function App() {
                     name="Lechuga Española"
                     initialQuantity={cartItems.find(item => item.name === 'Lechuga Española')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
               </div>
 
@@ -210,7 +212,7 @@ export default function App() {
                     name="Mizuna Verde"
                     initialQuantity={cartItems.find(item => item.name === 'Mizuna Verde')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
               </div>
 

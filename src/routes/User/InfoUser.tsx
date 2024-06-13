@@ -53,16 +53,18 @@ export default function App() {
                               <AccountCircleIcon style={{ fontSize: "60px", color: "#ffffff" }} />
                               <h2 style={{ color: "#f5f5f5" }}>Tu Información</h2>
                         </div>
-                        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                              <div style={{ color: "#f5f5f5" }}></div>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                              <InfoIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-                              <div style={{ color: "#f5f5f5" }}>Información personal.</div>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                              <EditIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-                              <div style={{ color: "#f5f5f5" }}>Puedes editar tus datos.</div>
+                        <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+                              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                    <div style={{ color: "#2a653b" }}>-</div>
+                              </div>
+                              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                    <InfoIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+                                    <div style={{ color: "#f5f5f5" }}>Información personal.</div>
+                              </div>
+                              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                    <EditIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+                                    <div style={{ color: "#f5f5f5" }}>Puedes editar tus datos.</div>
+                              </div>
                         </div>
                   </div>
                   <div className="wrapper">

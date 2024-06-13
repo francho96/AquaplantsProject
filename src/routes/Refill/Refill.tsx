@@ -12,21 +12,23 @@ export default function App() {
   return (
     <div className="App">
       <div className="App">
-        <div className="headerBackground">
+        <div className="headerBackground" style={{}}>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <img src={planta_nuevo} width="60px" style={{ fontSize: "60px", color: "#ffffff" }} />
             <h2 style={{ color: "#f5f5f5" }}>Refill</h2>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <div style={{ color: "#f5f5f5" }}>¡Recuerda que con tu suscripción puedes acceder a distintos beneficios!</div>
-          </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <img src={hoja} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Refill de almácigos.</div>
-          </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <img src={fertilizante} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Refill de fertilizante.</div>
+          <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <div style={{ color: "#f5f5f5" }}>¡Disfruta los beneficios de tu suscripción!</div>
+            </div>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center", paddingBottom: "0px" }}>
+              <img src={hoja} style={{ fontSize: "20px", color: "#ffffff", width: "25px" }} />
+              <div style={{ color: "#f5f5f5" }}>Refill de almácigos.</div>
+            </div>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <img src={fertilizante} style={{ fontSize: "20px", color: "#ffffff", width: "25px", paddingTop: "0px" }} />
+              <div style={{ color: "#f5f5f5" }}>Refill de fertilizante.</div>
+            </div>
           </div>
         </div>
         <div className="wrapper">

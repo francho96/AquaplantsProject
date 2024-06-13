@@ -83,16 +83,18 @@ export default function App() {
             <img src={fertilizante} width="60px" />
             <h2>Refill</h2>
           </div>
-          <div className="header-content">
-            <div>¡Aquí puedes seleccionar los distintos fertilizantes que tienes disponibles!</div>
-          </div>
-          <div className="header-content">
-            <img src={hoja} width="30px" />
-            <div>AquaPlants 3 MINI.</div>
-          </div>
-          <div className="header-content">
-            <StarsIcon style={{ fontSize: '30px', color: '#ffffff', width: '30px' }} />
-            <div>Plan de suscripción premium.</div>
+          <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+            <div className="header-content">
+              <div>¡Elige los fertilizantes disponibles aquí!</div>
+            </div>
+            <div className="header-content">
+              <img src={hoja} width="20px" />
+              <div>AquaPlants 3 MINI.</div>
+            </div>
+            <div className="header-content">
+              <StarsIcon style={{ fontSize: '30px', color: '#ffffff', width: '20px' }} />
+              <div>Plan de suscripción premium.</div>
+            </div>
           </div>
         </div>
         <div className="wrapper">
@@ -108,7 +110,7 @@ export default function App() {
                     name="Fertilizante AyB Vegetativo (250 ml)"
                     initialQuantity={cartItems.find(item => item.name === 'Fertilizante AyB Vegetativo (250 ml)')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
               </div>
               <div className="card" style={{ position: 'relative' }}>
@@ -120,7 +122,7 @@ export default function App() {
                     name="Fertilizante AyB Vegetativo (500 ml)"
                     initialQuantity={cartItems.find(item => item.name === 'Fertilizante AyB Vegetativo (500 ml)')?.quantity || 0}
                     onAdd={addToCart}
-                    onRemove={removeFromCart}/>
+                    onRemove={removeFromCart} />
                 </div>
                 <div style={{ fontSize: "95%" }} className="overlay">No disponible con tu suscripción.</div>
               </div>

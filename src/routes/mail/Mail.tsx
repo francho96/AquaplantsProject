@@ -16,7 +16,7 @@ export default function App() {
   const [chatOpened, setChatOpened] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<string[]>([]); // Provide initial value as an empty array
- 
+
   const sendMessage = () => {
     setMessages([...messages, message])
     messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
@@ -27,40 +27,44 @@ export default function App() {
     <div className="App">
       <div className="App">
         <div className="headerBackground">
-          
+
           {!chatOpened ? (
             <>
+
               <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                 <HelpOutlineIcon style={{ fontSize: "60px", color: "#ffffff" }} />
                 <h2 style={{ color: "#f5f5f5" }}>Centro de Ayuda</h2>
               </div>
-              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <div style={{ color: "#f5f5f5" }}>¡Puedes comunicarte con Aquaplants por cualquier duda que tengas!</div>
+              <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                  <div style={{ color: "#f5f5f5" }}>¡Contacta a Aquaplants para resolver tus dudas!</div>
+                </div>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                  <ChatIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+                  <div style={{ color: "#f5f5f5" }}>Envía nuevos mensajes.</div>
+                </div>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                  <HistoryIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
+                  <div style={{ color: "#f5f5f5" }}>Revisa tus consultas anteriores.</div>
+                </div>
               </div>
-              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <ChatIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-                <div style={{ color: "#f5f5f5" }}>Envía nuevos mensajes.</div>
-              </div>
-              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <HistoryIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-                <div style={{ color: "#f5f5f5" }}>Revisa tus consultas anteriores.</div>
-              </div>
+
             </>
-          ) : ( 
-          <div><ArrowBack style={{ color: "white", fontSize: "30px"}} onClick={() => setChatOpened(false)}/></div>
+          ) : (
+            <div><ArrowBack style={{ color: "white", fontSize: "30px" }} onClick={() => setChatOpened(false)} /></div>
           )}
         </div>
 
         {chatOpened ? (
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "calc(100vh - 320px)", padding: "10px", boxSizing: "border-box"}}>
-            <div style={{ display: "flex", height: "100%", overflowY: "auto", flexDirection: "column"}} ref={messagesEndRef}>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "calc(100vh - 320px)", padding: "10px", boxSizing: "border-box" }}>
+            <div style={{ display: "flex", height: "100%", overflowY: "auto", flexDirection: "column" }} ref={messagesEndRef}>
               {messages.map((msg) => (
                 <TextField
                   id="outlined-multiline-flexible"
                   label="Franco Barría"
                   value={msg}
                   multiline
-                  style={{marginTop: "10px"}}
+                  style={{ marginTop: "10px" }}
                   inputProps={{ readOnly: true, style: { color: 'black' } }}
                   sx={{
                     "& .MuiInputBase-input.Mui-disabled": {
