@@ -56,18 +56,7 @@
   text-decoration: underline;
 }
 
-.headerBackground {
-  height: 250px;
-  background-color: #2a653b;
-  width: 100vw;
-  display: flex;
-  padding: 40px;
-  flex-direction: column;
-  gap: 10px;
-  box-sizing: border-box;
-  margin-top: -20px;
-  border-radius: 20px;
-}
+
 
 .green-screen {
   position: fixed;
