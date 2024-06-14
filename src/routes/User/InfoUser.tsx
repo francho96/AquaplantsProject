@@ -50,7 +50,7 @@ export default function App() {
                               <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
                         </Link>
                         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                              <AccountCircleIcon style={{ fontSize: "60px", color: "#ffffff" }} />
+                              <AccountCircleIcon style={{ fontSize: "60px", color: "#ffffff", paddingLeft:"12px" }} />
                               <h2 style={{ color: "#f5f5f5" }}>Tu Información</h2>
                         </div>
                         <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>

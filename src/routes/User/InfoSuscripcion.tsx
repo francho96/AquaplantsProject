@@ -11,14 +11,11 @@ export default function App() {
   return (
     <div className="App">
       <div className="headerBackground">
-        <Link to="/in/user">
-          <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
-        </Link>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <Link to="/in/user">
             <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
           </Link>
-          <StarsIcon style={{ fontSize: "60px", width: "60px", color: "f5f5f5" }} />
+          <StarsIcon style={{ fontSize: "60px", width: "60px", color: "f5f5f5", paddingLeft:"12px" }} />
           <h2>Suscripción</h2>
         </div>
         <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>

@@ -53,11 +53,21 @@ export default function App() {
 
             </>
           ) : (
-            <div><ArrowBack style={{ color: "white", fontSize: "30px" }} onClick={() => setChatOpened(false)} /></div>
+            <div><ArrowBack style={{ color: "white", fontSize: "30px" }} onClick={() => setChatOpened(false)} />
+              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                <HelpOutlineIcon style={{ fontSize: "40px", color: "#ffffff" }} />
+                <h3 style={{ color: "#f5f5f5" }}>Centro de Ayuda</h3>
+              </div>
+              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                <ChatIcon style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
+                <div style={{ color: "#f5f5f5", fontWeight: "bold" }}>Asunto:</div>
+              </div>
+            </div>
           )}
         </div>
 
         {chatOpened ? (
+
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "calc(100vh - 320px)", padding: "10px", boxSizing: "border-box" }}>
             <div style={{ display: "flex", height: "100%", overflowY: "auto", flexDirection: "column" }} ref={messagesEndRef}>
               {messages.map((msg) => (
@@ -79,18 +89,18 @@ export default function App() {
               ))}
 
             </div>
-            <div style={{ display: "flex", gap: "20px", width: "auto", alignContent: "center", marginTop: "20px" }}>
+            <div style={{ display: "flex", gap: "10px", width: "auto", alignContent: "center", marginTop: "20px", marginBottom: "-115px" }}>
               <TextField
                 id="outlined-multiline-static"
                 label="Mensaje"
                 multiline
-                rows={2}
+                rows={1}
                 focused
                 color="success"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 defaultValue=""
-                style={{ color: "#2a653b", width: "100%" }}
+                style={{ color: "#2a653b", width: "100%", marginBottom: "10px" }}
               />
               <SendIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px", margin: "auto" }} onClick={() => sendMessage()} />
             </div>
@@ -118,7 +128,7 @@ export default function App() {
                   <QuestionAnswerIcon style={{ fontSize: "40px", color: "#2a653b", width: "70px" }} />
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <p style={{ fontWeight: "bold" }}>Consulta 1</p>
+                  <p style={{ fontWeight: "bold" }}>No crece la lechuga</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
@@ -129,7 +139,7 @@ export default function App() {
                   <QuestionAnswerIcon style={{ fontSize: "40px", color: "#2a653b", width: "70px" }} />
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <p style={{ fontWeight: "bold" }}>Consulta 2</p>
+                  <p style={{ fontWeight: "bold" }}>Se acabó el fertilizante</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <ArrowCircleRightIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />

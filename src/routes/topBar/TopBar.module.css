@@ -1,3 +1,4 @@
+
 /* @media (max-width: 1376px) {
 	.buttonContainer {
 		display: none;
@@ -9,6 +10,7 @@
 		display: none;
 	}
 } */
+
 
 .button {
 
@@ -56,8 +58,9 @@
 	width: 100%;
 }
 
+
 .transitionScreen {
-	background-color: #2a653b;
+	background-color: rgba(42, 101, 59, 0.998);
 	color: aliceblue;
 	border-radius: 5px;
 	height: 100vh;
@@ -66,6 +69,10 @@
 	top: 0px;
 	border-radius: 20px;
 	animation: slide-up 1s forwards;
+	background-image: url("../../assets/Logo_AquaPlants2.png");
+	background-size: 40%;
+	background-repeat: no-repeat;
+	background-position: center top;
 }
 
 .enterAnimation {
@@ -80,6 +87,19 @@
 	animation: slide-up2 1s forwards;
 }
 
+
+    
+    @keyframes fadeOut {
+	0% {
+	  opacity: 1;
+	}
+	100% {
+	  opacity: 0;
+	  visibility: hidden;
+	}
+    }
+    
+
 @keyframes slide-up {
 	0% { transform: translateY(100%); }
 	50% { transform: translateY(0%); }
@@ -90,3 +110,4 @@
 	0% { transform: translateY(0%); }
 	100% { transform: translateY(100%); }
   }
+  

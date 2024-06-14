@@ -60,7 +60,7 @@ export default function App() {
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona tu producto:</h2>
         <Card>
           <Link to="/in/user/product">
-            <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <img src={planta} style={{ fontSize: "40px", color: "#2a653b", width: "45px" }} />
               </div>
@@ -76,7 +76,7 @@ export default function App() {
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona tu suscripción:</h2>
         <Card>
           <Link to="/in/user/suscription">
-            <div style={{ width: "90%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "2px", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "2px", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <img src={premium} style={{ fontSize: "40px", color: "#2a653b", width: "40px" }} />
               </div>

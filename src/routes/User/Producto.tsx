@@ -11,7 +11,7 @@ export default function App() {
 
       return (
             <div className="App">
-                  <div className="headerBackground">
+                 <div className="headerBackground">
                         <Link to="/in/user">
                               <ArrowBack style={{ color: "white", width: "50px", position: "absolute", left: "0", top: "15" }} />
                         </Link>
@@ -39,7 +39,7 @@ export default function App() {
                   <div className="wrapper">
                         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>KIT TORRE AQUAPLANTS 3</h2>
                         <Card>
-
+                              
                               <div >
                                     <div style={{ marginBottom: "4px" }}>
                                           <strong>Fecha de compra:</strong> 19/04/2024
@@ -59,10 +59,10 @@ export default function App() {
                                     </div>
                               </div>
                         </Card>
-                        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "10px" }}>Cultivo actual</h2>
+                        <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop:"10px" }}>Cultivo actual</h2>
                         <Card>
                               <div>
-                                    <p style={{ fontWeight: "bold", fontSize: "large", marginTop: "0px" }}>Piso 1: </p>
+                                    <p style={{ fontWeight: "bold", fontSize: "large",marginTop:"0px" }}>Piso 1: </p>
                                     <div className="almacigos">
                                           <p style={{ fontWeight: "450" }}>Almácigo 1.1</p>
                                           <select className="selector" name="opciones" defaultValue="">
