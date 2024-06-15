@@ -10,8 +10,28 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import planta from '../../assets/planta-verde.png'
 import { Link } from 'react-router-dom';
 import HelpIcon from '@mui/icons-material/Help';
+import { useEffect, useState } from 'react';
+
 
 export default function App() {
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    // Obtener los datos de localStorage
+    const userData = JSON.parse(localStorage.getItem('userData') ?? '[]');
+
+    // Verificar si los datos están presentes y no es un arreglo vacío
+    if (userData.length > 0) {
+      console.log(userData);
+      // Aquí puedes hacer cualquier otra operación con los datos obtenidos
+      const { firstname, lastname } = userData[0];
+      if (firstname && lastname) {
+        setUserName(`${firstname} ${lastname}`);
+      }
+    } else {
+      console.log("No hay datos de usuario en localStorage");
+    }
+  }, []);
 
 
   return (
@@ -19,7 +39,7 @@ export default function App() {
       <div className="headerBackground">
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <AccountCircleIcon style={{ fontSize: "60px", color: "#ffffff" }} />
-          <h2 style={{ color: "#f5f5f5" }}>Bienvenido Franco Barría</h2>
+          <h2 style={{ color: "#f5f5f5" }}>Bienvenido {userName || 'Usuario'}</h2>
         </div>
         <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>

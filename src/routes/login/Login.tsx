@@ -24,19 +24,24 @@ export default function App() {
     }, []);
 
     const handleEnter = async () => {
-        navigate('/in');
         try {
-          const url = import.meta.env.VITE_APP_XDD;
-          console.log(url)
-          const { data } = await axios.post(url + "/login", {email, password});
-          console.log(data);
-          setEntering(!entering);
-          setTimeout(() => {
-              navigate('/in');
-          }, 3000);
+            const loginUrl = import.meta.env.VITE_APP_XDD;
+            const { data } = await axios.post(loginUrl + "/login", { email, password });
+            console.log(data);
+
+            const userUrl = import.meta.env.VITE_APP_APIAQP;
+            const userResponse = await axios.post(userUrl + "/usuario", { email });
+
+            // Almacenar en localStorage
+            localStorage.setItem('userData', JSON.stringify(userResponse.data));
+
+            setEntering(!entering);
+            setTimeout(() => {
+                navigate('/in');
+            }, 3000);
         } catch (error) {
-          console.log("no funciono");
-          setError(true);
+            console.log("no funciono");
+            setError(true);
         }
     };
 
@@ -76,16 +81,16 @@ export default function App() {
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                           
-                                <div
-                                    style={{
-                                        color: 'red',
-                                        textAlign: 'left',
-                                        marginTop: '10px',
-                                    }}
-                                >
-                                     {error && "Usuario o contraseña incorrectos"} &nbsp;
-                                </div>
+
+                            <div
+                                style={{
+                                    color: 'red',
+                                    textAlign: 'left',
+                                    marginTop: '10px',
+                                }}
+                            >
+                                {error && "Usuario o contraseña incorrectos"} &nbsp;
+                            </div>
                             <div
                                 className="space"
                                 style={{ justifyContent: 'end' }}
