@@ -10,8 +10,30 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import planta from '../../assets/planta-verde.png'
 import { Link } from 'react-router-dom';
 import HelpIcon from '@mui/icons-material/Help';
+import { useEffect } from 'react';
 
 export default function App() {
+  useEffect(() => {
+      // Obtener el objeto guardado en localStorage
+      const infoUsuario = localStorage.getItem('infoUsuario');
+      
+      // Mostrar el objeto en la consola si existe
+      if (infoUsuario) {
+          const { firstname, lastname } = JSON.parse(infoUsuario);
+          console.log('Información del usuario:', { firstname, lastname });
+      }
+  }, []);
+
+  // Obtener el nombre para mostrar en el encabezado
+  const nombreUsuario = (() => {
+      const infoUsuario = localStorage.getItem('infoUsuario');
+      if (infoUsuario) {
+          const { firstname, lastname } = JSON.parse(infoUsuario);
+          return `Bienvenido ${firstname} ${lastname}`;
+      } else {
+          return 'Bienvenido Usuario';
+      }
+  })();
 
 
   return (
@@ -19,7 +41,7 @@ export default function App() {
       <div className="headerBackground">
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <AccountCircleIcon style={{ fontSize: "60px", color: "#ffffff" }} />
-          <h2 style={{ color: "#f5f5f5" }}>Bienvenido Franco Barría</h2>
+          <h2 style={{ color: "#f5f5f5" }}>{nombreUsuario}</h2>
         </div>
         <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>

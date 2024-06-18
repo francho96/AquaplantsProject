@@ -3,7 +3,7 @@ import AquaplantsLogo from '../../assets/Logo_AquaPlants_letraverde_fondotranspa
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export default function App() {
     const [entering, setEntering] = useState(false);
@@ -24,6 +24,28 @@ export default function App() {
     }, []);
 
     const handleEnter = async () => {
+        setEntering(true);
+        try {
+            const url = `${import.meta.env.VITE_APP_API}/usuario`;
+            const response = await axios.post(url, { email });
+
+            if (response.status === 200) {
+                localStorage.setItem('infoUsuario', JSON.stringify(response.data));
+                navigate('/in');
+            }
+        } catch (error: any) {
+            if (error.response && error.response.status === 404) {
+                setError(true);
+            } else {
+                console.error('Error al obtener datos del usuario:', error);
+            }
+        } finally {
+            setEntering(false);
+        }
+    };
+
+    {/*
+    const handleEnter = async () => {
         navigate('/in');
         try {
           const url = import.meta.env.VITE_APP_XDD;
@@ -39,6 +61,8 @@ export default function App() {
           setError(true);
         }
     };
+
+    */}
 
     return (
         <div className="App">
@@ -77,15 +101,15 @@ export default function App() {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                            
-                                <div
-                                    style={{
-                                        color: 'red',
-                                        textAlign: 'left',
-                                        marginTop: '10px',
-                                    }}
-                                >
-                                     {error && "Usuario o contraseña incorrectos"} &nbsp;
-                                </div>
+                            <div
+                                style={{
+                                    color: 'red',
+                                    textAlign: 'left',
+                                    marginTop: '10px',
+                                }}
+                            >
+                                {error && "Usuario o contraseña incorrectos"} &nbsp;
+                            </div>
                             <div
                                 className="space"
                                 style={{ justifyContent: 'end' }}
