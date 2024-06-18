@@ -24,5 +24,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Hermano escondan el env dios mío por favor
-.env
