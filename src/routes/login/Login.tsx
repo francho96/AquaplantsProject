@@ -3,14 +3,14 @@ import AquaplantsLogo from '../../assets/Logo_AquaPlants_letraverde_fondotranspa
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { useEffect, useState } from 'react';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 export default function App() {
     const [entering, setEntering] = useState(false);
     const [showCover, setShowCover] = useState(true);
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    //const [password, setPassword] = useState('');
 
     const [error, setError] = useState(false);
     const navigate = useNavigate();
@@ -98,7 +98,7 @@ export default function App() {
                                 disabled={entering}
                                 placeholder="Contraseña"
                                 type="password"
-                                onChange={(e) => setPassword(e.target.value)}
+                                //onChange={(e) => setPassword(e.target.value)}
                             />
                            
                             <div
