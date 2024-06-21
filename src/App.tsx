@@ -1,6 +1,6 @@
-import { Suspense, lazy, createContext } from 'react';
+import { Suspense, lazy, createContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { scheduleNotification } from './utils/scheduleNotifications';
 
 
 import Shopping from './routes/Shopping/Shopping';
@@ -20,6 +20,11 @@ const Home = lazy(() => import('./routes/home/Home'));
 export const UserContext = createContext(null);
 
 function App() {
+
+    useEffect(() => {
+        scheduleNotification();
+    }, []);
+    
     return (
         <BrowserRouter>
             <UserContext.Provider value={null}>
