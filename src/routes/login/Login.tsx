@@ -3,14 +3,14 @@ import AquaplantsLogo from '../../assets/Logo_AquaPlants_letraverde_fondotranspa
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export default function App() {
     const [entering, setEntering] = useState(false);
     const [showCover, setShowCover] = useState(true);
 
     const [email, setEmail] = useState('');
-    //const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');
 
     const [error, setError] = useState(false);
     const navigate = useNavigate();
@@ -27,14 +27,14 @@ export default function App() {
         setEntering(true);
         try {
             const url = `${import.meta.env.VITE_APP_API}/usuario`;
-            const response = await axios.post(url, { email });
+            const response = await axios.post(url, { email, password });
 
             if (response.status === 200) {
                 localStorage.setItem('infoUsuario', JSON.stringify(response.data));
                 navigate('/in');
             }
-        } catch (error: any) {
-            if (error.response && error.response.status === 404) {
+        } catch (error) {
+            if ((error as AxiosError).response && (error as AxiosError).response?.status === 404) {
                 setError(true);
             } else {
                 console.error('Error al obtener datos del usuario:', error);
@@ -98,9 +98,8 @@ export default function App() {
                                 disabled={entering}
                                 placeholder="Contraseña"
                                 type="password"
-                                //onChange={(e) => setPassword(e.target.value)}
-                            />
-                           
+                                onChange={(e) => setPassword(e.target.value)}
+                            />                           
                             <div
                                 style={{
                                     color: 'red',
