@@ -1,14 +1,14 @@
 .headerBackground {
-  height: 250px;
+  height: 160px;
   background-color: #2a653b;
-  width: 100vw;
+  width: 100%;
   display: flex;
-  padding: 40px;
+  padding: 20px;
   flex-direction: column;
-  gap: 10px;
+  gap: 1px;
   box-sizing: border-box;
-  margin-top: -20px;
-  border-radius: 20px;
+  margin-top: -15px;
+  border-radius: 15px;
 }
 
 .green-screen {
