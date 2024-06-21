@@ -24,6 +24,7 @@ export default function App() {
     }, []);
 
     const handleEnter = async () => {
+        navigate('/in');
         setEntering(true);
         try {
             const url = `${import.meta.env.VITE_APP_API}/usuario`;
