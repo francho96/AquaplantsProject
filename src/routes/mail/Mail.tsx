@@ -7,7 +7,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import SendIcon from '@mui/icons-material/Send';
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { TextField } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 
@@ -19,11 +19,14 @@ export default function App() {
 
   const sendMessage = () => {
     setMessages([...messages, message])
+    setMessage("");
+  }
+
+  useEffect(() => {
     if (messagesEndRef.current) {
       (messagesEndRef.current as HTMLElement).scrollTop = (messagesEndRef.current as HTMLElement).scrollHeight;
     }
-    setMessage("");
-  }
+  }, [messages]);
 
   return (
     <div className="App">

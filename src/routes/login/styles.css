@@ -10,7 +10,7 @@
 }
 
 .dummyBackground {
-  background-color: #fdffebe5;
+  background-color: #fdffeb;
   height: 80vh;
   position: fixed;
   width: 100vw;
@@ -21,7 +21,7 @@
 }
 
 .dummyBackgroundEntering {
-  background-color: #fdffebe5;
+  background-color: #fdffeb;
   height: 0vh;
   position: fixed;
   width: 100vw;
