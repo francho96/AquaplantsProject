@@ -7,34 +7,32 @@ import raiz from "../../assets/raiz.png";
 import fertilizanteverde from "../../assets/Fertilizante-verde.png";
 import hojaverde from "../../assets/hoja-verde.png";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import planta from '../../assets/planta-verde.png'
+import planta from '../../assets/planta-verde.png';
 import { Link } from 'react-router-dom';
 import HelpIcon from '@mui/icons-material/Help';
 import { useEffect } from 'react';
+import { useUser } from '../../hooks/useUser'; // Asegúrate de que la ruta sea correcta
 
 export default function App() {
+  const { email } = useUser(); // Usar el hook personalizado para obtener el correo electrónico
+
   useEffect(() => {
-      // Obtener el objeto guardado en localStorage
-      const infoUsuario = localStorage.getItem('infoUsuario');
-      
-      // Mostrar el objeto en la consola si existe
-      if (infoUsuario) {
-          const { firstname, lastname } = JSON.parse(infoUsuario);
-          console.log('Información del usuario:', { firstname, lastname });
+      // Mostrar el correo electrónico en la consola si está disponible
+      if (email) {
+          console.log('Correo electrónico del usuario:', email);
       }
-  }, []);
+  }, [email]);
 
   // Obtener el nombre para mostrar en el encabezado
   const nombreUsuario = (() => {
-      const infoUsuario = localStorage.getItem('infoUsuario');
-      if (infoUsuario) {
-          const { firstname, lastname } = JSON.parse(infoUsuario);
-          return `Bienvenido ${firstname} ${lastname}`;
+      // Aquí debes obtener el nombre y otros detalles del usuario desde el contexto o algún otro estado si es necesario
+      // Por simplicidad, solo usaremos el correo electrónico en el saludo
+      if (email) {
+          return `Bienvenido ${email}`;
       } else {
           return 'Bienvenido Usuario';
       }
   })();
-
 
   return (
     <div className="App">
@@ -105,7 +103,7 @@ export default function App() {
         </Card>
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona la torre para realizar una recarga:</h2>
         <Card>
-        <div className="container">
+          <div className="container">
               <strong>Torre AquaPlants 3 MINI</strong>
               <div className="inner-container">
                 <div className="inner-div">

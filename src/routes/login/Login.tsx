@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
+import { useUser } from '../../hooks/useUser';
 
 export default function App() {
     const [entering, setEntering] = useState(false);
     const [showCover, setShowCover] = useState(true);
-
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [error, setError] = useState(false);
     const navigate = useNavigate();
+
+    const { email, setEmail } = useUser(); // Usar el hook personalizado
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -24,14 +24,14 @@ export default function App() {
     }, []);
 
     const handleEnter = async () => {
-        navigate('/in');
         setEntering(true);
         try {
-            const url = `${import.meta.env.VITE_APP_API}/usuario`;
+            const url = `${import.meta.env.VITE_APP_XDD}/login`;
             const response = await axios.post(url, { email, password });
 
             if (response.status === 200) {
-                localStorage.setItem('infoUsuario', JSON.stringify(response.data));
+                // Guardar el correo en el contexto en lugar de localStorage
+                setEmail(email);
                 navigate('/in');
             }
         } catch (error) {
@@ -44,26 +44,6 @@ export default function App() {
             setEntering(false);
         }
     };
-
-    {/*
-    const handleEnter = async () => {
-        navigate('/in');
-        try {
-          const url = import.meta.env.VITE_APP_XDD;
-          console.log(url)
-          const { data } = await axios.post(url + "/login", {email, password});
-          console.log(data);
-          setEntering(!entering);
-          setTimeout(() => {
-              navigate('/in');
-          }, 3000);
-        } catch (error) {
-          console.log("no funciono");
-          setError(true);
-        }
-    };
-
-    */}
 
     return (
         <div className="App">
@@ -100,7 +80,7 @@ export default function App() {
                                 placeholder="Contraseña"
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
-                            />                           
+                            />
                             <div
                                 style={{
                                     color: 'red',
