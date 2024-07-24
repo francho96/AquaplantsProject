@@ -11,9 +11,10 @@ export default function App() {
     const [showCover, setShowCover] = useState(true);
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
+    const [inputError, setInputError] = useState('');
     const navigate = useNavigate();
 
-    const { email, setEmail } = useUser(); // Usar el hook personalizado
+    const { email, setEmail } = useUser();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -23,14 +24,30 @@ export default function App() {
         return () => clearTimeout(timer);
     }, []);
 
+    const validateEmail = (email: string) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    };
+
     const handleEnter = async () => {
+        if (!email || !password) {
+            setInputError('Por favor ingresa correo y contraseña');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setInputError('Por favor ingresa un correo válido');
+            return;
+        }
+
         setEntering(true);
+        setInputError('');
+
         try {
             const url = `${import.meta.env.VITE_APP_XDD}/login`;
             const response = await axios.post(url, { email, password });
 
             if (response.status === 200) {
-                // Guardar el correo en el contexto en lugar de localStorage
                 setEmail(email);
                 navigate('/in');
             }
@@ -88,7 +105,7 @@ export default function App() {
                                     marginTop: '10px',
                                 }}
                             >
-                                {error && "Usuario o contraseña incorrectos"} &nbsp;
+                                {inputError && inputError} {error && "Usuario o contraseña incorrectos"} &nbsp;
                             </div>
                             <div
                                 className="space"
