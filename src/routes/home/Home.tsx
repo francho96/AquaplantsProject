@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import "./styles.css";
 import Card from "../components/Card";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -10,29 +12,31 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import planta from '../../assets/planta-verde.png';
 import { Link } from 'react-router-dom';
 import HelpIcon from '@mui/icons-material/Help';
-import { useEffect } from 'react';
-import { useUser } from '../../hooks/useUser'; // Asegúrate de que la ruta sea correcta
+import { useUser } from '../../hooks/useUser';
 
 export default function App() {
   const { email } = useUser(); // Usar el hook personalizado para obtener el correo electrónico
+  const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {
-      // Mostrar el correo electrónico en la consola si está disponible
-      if (email) {
-          console.log('Correo electrónico del usuario:', email);
-      }
+    if (email) {
+      axios.post(`${import.meta.env.VITE_APP_XDD}/userHome`, { email })
+        .then(response => {
+          setUserData(response.data);
+          console.log('Datos del usuario:', response.data);
+        })
+        .catch(error => {
+          console.error('Error al obtener los datos del usuario:', error);
+        });
+    }
   }, [email]);
 
-  // Obtener el nombre para mostrar en el encabezado
-  const nombreUsuario = (() => {
-      // Aquí debes obtener el nombre y otros detalles del usuario desde el contexto o algún otro estado si es necesario
-      // Por simplicidad, solo usaremos el correo electrónico en el saludo
-      if (email) {
-          return `Bienvenido ${email}`;
-      } else {
-          return 'Bienvenido Usuario';
-      }
-  })();
+  const nombreUsuario = userData ? `Bienvenido ${userData.firstname}` : 'Bienvenido Usuario';
+  const torre = userData && userData.torre ? userData.torre : null;
+  const comuna = userData && userData.comuna ? userData.comuna : 'Comuna no establecida';
+
+  const ordenes = userData ? userData.ordenes : [];
+  const tieneOrdenes = ordenes.length > 0;
 
   return (
     <div className="App">
@@ -44,67 +48,55 @@ export default function App() {
         <div style={{ fontSize: "0.9em", lineHeight: "1.5em" }}>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <img src={raiz} style={{ fontSize: "20px", color: "#ffffff", width: "25px" }} />
-            <div style={{ color: "#f5f5f5" }}>Torre de 3 pisos</div>
+            <div style={{ color: "#f5f5f5" }}>{torre || 'No hay torre disponible'}</div>
           </div>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <LocationOnIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Despacho a Antártica Chilena</div>
+            <div style={{ color: "#f5f5f5" }}>Envío a {comuna}</div>
           </div>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <StarsIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Plan de suscripción premium</div>
+            <div style={{ color: "#f5f5f5" }}>Plan de suscripción no premium</div>
           </div>
         </div>
       </div>
       <div className="wrapper">
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Mis pedidos</h2>
         <Card>
-
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>
-              Orden:
-            </div>
-            <div>
-              666
-            </div>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>
-              Tipo:
-            </div>
-            <div>
-              Refill de almácigos
-            </div>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>
-              Estado:
-            </div>
-            <div>
-              En proceso
-            </div>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>
-              Fecha de entrega:
-            </div>
-            <div>
-              30 de febrero 2025
-            </div>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>
-              Comuna:
-            </div>
-            <div>
-              Antártica Chilena
-            </div>
-          </div>
+          {tieneOrdenes ? (
+            ordenes.map((orden: any, index: number) => (
+              <div key={index} style={{ marginBottom: "20px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div>Orden:</div>
+                  <div>{orden.nro}</div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div>Tipo:</div>
+                  <div>{orden.category}</div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div>Estado:</div>
+                  <div>{orden.status}</div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div>Fecha de creación:</div>
+                  <div>{orden.Fcrea ? new Date(orden.Fcrea).toLocaleDateString() : 'Fecha no disponible'}</div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div>Comuna:</div>
+                  <div>{orden.Comuna_Ciudad || 'Comuna no establecida'}</div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div style={{ textAlign: "center" }}>No tienes órdenes.</div>
+          )}
         </Card>
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Selecciona la torre para realizar una recarga:</h2>
         <Card>
-          <div className="container">
-              <strong>Torre AquaPlants 3 MINI</strong>
+          {torre ? (
+            <div className="container">
+              <strong>{torre}</strong>
               <div className="inner-container">
                 <div className="inner-div">
                   <Link to="/in/refill/fertilizante" >
@@ -122,27 +114,33 @@ export default function App() {
                 </div>
               </div>
             </div>
+          ) : (
+            <div style={{ textAlign: "center" }}>No tienes torres disponibles.</div>
+          )}
         </Card>
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "20px" }}>Estado de tu producto:</h2>
         <Card>
-          <Link to="/in/user/product">
-            <div style={{ width: "100%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={planta} style={{ fontSize: "40px", color: "#2a653b", width: "45px" }} />
+          {torre ? (
+            <Link to="/in/user/product">
+              <div style={{ width: "100%", display: "flex", justifyContent: "space-around", marginBottom: "2.5%", margin: "0", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <img src={planta} style={{ fontSize: "40px", color: "#2a653b", width: "45px" }} />
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p style={{ fontWeight: "bold" }}>{torre}</p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <InfoOutlinedIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
+                </div>
               </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <p style={{ fontWeight: "bold" }}>Torre AquaPlants 3 MINI</p>
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <InfoOutlinedIcon style={{ fontSize: "50px", color: "#2a653b", width: "30px" }} />
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ) : (
+            <div style={{ textAlign: "center" }}>No tienes torres disponibles.</div>
+          )}
         </Card>
         <Card>
           <Link to="/in/mail">
             <div style={{ width: "100%", display: "flex", justifyContent: "space-around", border: "2px solid #CEEAD6", borderRadius: "10px", alignSelf: "center" }}>
-
               <div style={{ display: "flex", alignItems: "center" }}>
                 <p style={{ fontWeight: "bold" }}>¿Necesitas ayuda?</p>
               </div>
