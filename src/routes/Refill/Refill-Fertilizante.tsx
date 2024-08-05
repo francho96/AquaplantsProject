@@ -11,16 +11,26 @@ import StarsIcon from '@mui/icons-material/Stars';
 import ShoppingCartIcon from '../../assets/carrito.png';
 import { Link } from 'react-router-dom';
 import ArrowBack from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
+import { useUser } from '../../hooks/useUser';
 
 interface CartItem {
   name: string;
   quantity: number;
 }
 
+interface FertilizerOrder {
+  Fcrea: string;
+  title: string;
+}
+
 export default function App() {
   const [showCover, setShowCover] = useState(true);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [torre, setTorre] = useState<string | null>(null);
+  const [fertilizerOrders, setFertilizerOrders] = useState<FertilizerOrder[]>([]);
+  const { email } = useUser(); // Usar el hook personalizado para obtener el correo electrónico
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,6 +39,30 @@ export default function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (email) {
+      axios.post(`${import.meta.env.VITE_APP_XDD}/userHome`, { email })
+        .then(response => {
+          setTorre(response.data.torre); // Recuperar la torre del estado de respuesta
+          console.log('Torre:', response.data.torre);
+        })
+        .catch(error => {
+          console.error('Error al obtener los datos del usuario:', error);
+        });
+
+      axios.post(`${import.meta.env.VITE_APP_XDD}/ordenesFertilizantes`, { email })
+        .then(response => {
+          if (response.status === 200) {
+            setFertilizerOrders(response.data);
+            console.log('Historial de fertilizantes:', response.data);
+          }
+        })
+        .catch(error => {
+          console.error('Error al obtener el historial de fertilizantes:', error);
+        });
+    }
+  }, [email]);
 
   const addToCart = (name: string) => {
     setCartItems(prevItems => {
@@ -66,7 +100,6 @@ export default function App() {
     });
   };
 
-
   const handleCartToggle = () => {
     setIsCartOpen(!isCartOpen);
   };
@@ -89,11 +122,11 @@ export default function App() {
             </div>
             <div className="header-content">
               <img src={hoja} width="20px" />
-              <div>AquaPlants 3 MINI.</div>
+              <div>{torre ? `${torre}` : 'No hay torre disponible'}</div>
             </div>
             <div className="header-content">
               <StarsIcon style={{ fontSize: '30px', color: '#ffffff', width: '20px' }} />
-              <div>Plan de suscripción premium.</div>
+              <div>Plan de suscripción no premium.</div>
             </div>
           </div>
         </div>
@@ -131,10 +164,9 @@ export default function App() {
           <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '15px' }}>Historial de solicitudes:</h2>
           <Card>
             <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'disc' }}>
-              <li>26/06/2023: Fertilizante AyB Vegetativo (500 ml)</li>
-              <li>26/05/2023: Fertilizante AyB Vegetativo (250 ml)</li>
-              <li>02/04/2023: Fertilizante AyB Vegetativo (500 ml)</li>
-              <li>23/04/2032: Fertilizante AyB Vegetativo (250 ml)</li>
+              {fertilizerOrders.map(order => (
+                <li key={order.Fcrea}>{new Date(order.Fcrea).toLocaleDateString()} - {order.title}</li>
+              ))}
             </ul>
           </Card>
         </div>
