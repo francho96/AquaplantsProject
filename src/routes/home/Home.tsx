@@ -38,6 +38,9 @@ export default function App() {
   const ordenes = userData ? userData.ordenes : [];
   const tieneOrdenes = ordenes.length > 0;
 
+  // Determinar el texto para el plan de suscripción basado en la existencia de la torre
+  const planSuscripcion = torre ? 'Plan de suscripción Premium' : 'Plan de suscripción no premium';
+
   return (
     <div className="App">
       <div className="headerBackground">
@@ -56,7 +59,7 @@ export default function App() {
           </div>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <StarsIcon style={{ fontSize: "20px", color: "#ffffff", width: "30px" }} />
-            <div style={{ color: "#f5f5f5" }}>Plan de suscripción no premium</div>
+            <div style={{ color: "#f5f5f5" }}>{planSuscripcion}</div>
           </div>
         </div>
       </div>

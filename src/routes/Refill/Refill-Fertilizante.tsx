@@ -30,7 +30,8 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [torre, setTorre] = useState<string | null>(null);
   const [fertilizerOrders, setFertilizerOrders] = useState<FertilizerOrder[]>([]);
-  const { email } = useUser(); // Usar el hook personalizado para obtener el correo electrónico
+  const { email } = useUser();
+  const planSuscripcion = torre ? 'Plan de suscripción Premium' : 'Plan de suscripción no premium';
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -126,7 +127,7 @@ export default function App() {
             </div>
             <div className="header-content">
               <StarsIcon style={{ fontSize: '30px', color: '#ffffff', width: '20px' }} />
-              <div>Plan de suscripción no premium.</div>
+              <div>{planSuscripcion}</div>
             </div>
           </div>
         </div>

@@ -43,7 +43,7 @@ export default function App() {
   useEffect(() => {
     if (email) {
       // Obtener datos del usuario
-      axios.post(`${import.meta.env.VITE_APP_XDD}/userHome`, { email })
+      axios.post<UserData>(`${import.meta.env.VITE_APP_XDD}/userHome`, { email })
         .then(response => {
           setUserData(response.data);
           console.log('Datos del usuario:', response.data);
@@ -53,23 +53,35 @@ export default function App() {
         });
 
       // Obtener órdenes en proceso
-      axios.post(`${import.meta.env.VITE_APP_XDD}/ordenesRefillProceso`, { email })
+      axios.post<Orden[]>(`${import.meta.env.VITE_APP_XDD}/ordenesRefillProceso`, { email })
         .then(response => {
           if (response.status === 200) {
-            setOrdenes(response.data); // Asume que `response.data` es un array de órdenes
-            console.log('Órdenes en proceso:', response.data);
+            const uniqueOrdenes = Array.from(new Map(response.data.map(item => [item.id, item])).values());
+            setOrdenes(uniqueOrdenes); // Elimina duplicados basados en `id`
+            console.log('Órdenes en proceso:', uniqueOrdenes);
           }
         })
         .catch(error => {
-          console.error('Error al obtener las órdenes en proceso:', error);
+          if (error.response && error.response.status === 404) {
+            const errorMessage = error.response.data?.error;
+            if (errorMessage === 'No se encontraron órdenes') {
+              // Maneja el caso específico en el que no hay datos, pero no registras el error en consola
+              console.log(errorMessage);
+            }
+          } else {
+            // Registra cualquier otro error que no sea 404
+            console.error('Error al obtener las órdenes en proceso:', error);
+          }
         });
+        
 
       // Obtener historial
-      axios.post(`${import.meta.env.VITE_APP_XDD}/ordenesRefill`, { email })
+      axios.post<Historial[]>(`${import.meta.env.VITE_APP_XDD}/ordenesRefill`, { email })
         .then(response => {
           if (response.status === 200) {
-            setHistorial(response.data); // Asume que `response.data` es un array de historial
-            console.log('Historial:', response.data);
+            const uniqueHistorial = Array.from(new Map(response.data.map(item => [item.nro, item])).values());
+            setHistorial(uniqueHistorial); // Elimina duplicados basados en `nro`
+            console.log('Historial:', uniqueHistorial);
           }
         })
         .catch(error => {
