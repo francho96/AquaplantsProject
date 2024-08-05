@@ -9,6 +9,8 @@ import raiz from '../../assets/raiz.png';
 import ShoppingCartIcon from '../../assets/carrito.png';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../hooks/useUser';
+import axios from 'axios';
 // Almacigos
 import milanesa from '../../assets/almacigos/lechuga-milanesa.png';
 import marina from '../../assets/almacigos/lechuga-marina.png';
@@ -19,15 +21,24 @@ import espinaca from '../../assets/almacigos/Espinaca.png';
 import espanola from '../../assets/almacigos/Lechuga_Espanola.png';
 
 
+
 interface CartItem {
   name: string;
   quantity: number;
+}
+
+interface SeedlingOrder {
+  Fcrea: string;
+  title: string;
 }
 
 export default function App() {
   const [showCover, setShowCover] = useState(true);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [torre, setTorre] = useState<string | null>(null);
+  const [seedlingOrders, setSeedlingOrders] = useState<SeedlingOrder[]>([]);
+  const { email } = useUser()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,6 +47,30 @@ export default function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (email) {
+      axios.post(`${import.meta.env.VITE_APP_XDD}/userHome`, { email })
+        .then(response => {
+          setTorre(response.data.torre); // Recuperar la torre del estado de respuesta
+          console.log('Torre:', response.data.torre);
+        })
+        .catch(error => {
+          console.error('Error al obtener los datos del usuario:', error);
+        });
+
+      axios.post(`${import.meta.env.VITE_APP_XDD}/ordenesAlmacigos`, { email })
+        .then(response => {
+          if (response.status === 200) {
+            setSeedlingOrders(response.data);
+            console.log('Historial de almacigos:', response.data);
+          }
+        })
+        .catch(error => {
+          console.error('Error al obtener el historial de almacigos:', error);
+        });
+    }
+  }, [email]);
 
   const addToCart = (name: string) => {
     setCartItems(prevItems => {
@@ -96,7 +131,7 @@ export default function App() {
             </div>
             <div className="header-content">
               <img src={hoja} width="20px" />
-              <div>AquaPlants 3 MINI.</div>
+              <div>{torre ? `${torre}` : 'No hay torre disponible'}</div>
             </div>
             <div className="header-content">
               <img src={raiz} style={{ fontSize: '20px', color: '#ffffff', width: '20px' }} />
@@ -221,10 +256,11 @@ export default function App() {
           <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '15px' }}>Historial de solicitudes:</h2>
           <Card>
             <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'disc' }}>
-              <li>26/06/2023: Lechuga Canasta, Acelga, Rúcula.</li>
-              <li>26/05/2023: Cebolln, Rúcula, Lechuga Milanesa.</li>
-              <li>02/04/2023: Rumex, Espinaca, Acelga. </li>
-              <li>23/04/2032: Espinaca, Kale, Mizuna Morada. </li>
+              {seedlingOrders.map((order, index) => (
+                <li key={`${order.Fcrea}-${index}`}>
+                  {new Date(order.Fcrea).toLocaleDateString()} - {order.title}
+                </li>
+              ))}
             </ul>
           </Card>
         </div>
