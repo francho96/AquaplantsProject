@@ -73,7 +73,6 @@ export default function App() {
             console.error('Error al obtener las órdenes en proceso:', error);
           }
         });
-        
 
       // Obtener historial
       axios.post<Historial[]>(`${import.meta.env.VITE_APP_XDD}/ordenesRefill`, { email })
@@ -141,18 +140,21 @@ export default function App() {
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Órdenes en proceso:</h2>
         <Card>
           {ordenes.length > 0 ? (
-            ordenes.map(orden => (
-              <div key={orden.id} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                <img src={sol} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
-                <div>
-                  <h4 style={{ margin: "0", marginBottom: "5px" }}>{orden.tipo}:</h4>
-                  <ul style={{ margin: "0", padding: "0", listStyleType: "disc" }}>
-                    <li>{orden.id}</li>
-                    <li>{orden.estado}</li>
-                    <li>Entrega: {orden.entrega}</li>
-                    <li>{orden.ubicacion}</li>
-                  </ul>
+            ordenes.map((orden, index) => (
+              <div key={orden.id} style={{ marginBottom: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                  <img src={sol} style={{ fontSize: "30px", color: "#ffffff", width: "30px" }} />
+                  <div>
+                    <h4 style={{ margin: "0", marginBottom: "5px" }}>{orden.tipo}:</h4>
+                    <ul style={{ margin: "0", padding: "0", listStyleType: "disc" }}>
+                      <li>{orden.id}</li>
+                      <li>{orden.estado}</li>
+                      <li>Entrega: {orden.entrega}</li>
+                      <li>{orden.ubicacion}</li>
+                    </ul>
+                  </div>
                 </div>
+                {index < ordenes.length - 1 && <hr style={{ border: "1px solid #ddd", margin: "10px 0" }} />}
               </div>
             ))
           ) : (
@@ -162,7 +164,7 @@ export default function App() {
         <h2 style={{ color: "#444444", alignSelf: "flex-start", marginTop: "15px" }}>Historial:</h2>
         <Card>
           {historial.length > 0 ? (
-            historial.map(item => (
+            historial.map((item, index) => (
               <div key={item.nro} style={{ marginBottom: "10px", marginLeft: "10px" }}>
                 <h4>Orden N° {item.nro}</h4>
                 <ul style={{ margin: "0", padding: "0", listStyleType: "disc" }}>
@@ -170,6 +172,7 @@ export default function App() {
                   <li>Ciudad: {item.Comuna_Ciudad}</li>
                   <li>Estado: {item.status}</li>
                 </ul>
+                {index < historial.length - 1 && <hr style={{ border: "1px solid #ddd", margin: "10px 0" }} />}
               </div>
             ))
           ) : (

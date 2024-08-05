@@ -164,9 +164,12 @@ export default function App() {
           </Card>
           <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '15px' }}>Historial de solicitudes:</h2>
           <Card>
-            <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'disc' }}>
-              {fertilizerOrders.map(order => (
-                <li key={order.Fcrea}>{new Date(order.Fcrea).toLocaleDateString()} - {order.title}</li>
+            <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'none', padding: '0' }}>
+              {fertilizerOrders.map((order, index) => (
+                <li key={order.Fcrea} style={{ paddingBottom: '10px' }}>
+                  {new Date(order.Fcrea).toLocaleDateString()} - {order.title}
+                  {index < fertilizerOrders.length - 1 && <hr style={{ border: '1px solid #ddd', margin: '10px 0' }} />}
+                </li>
               ))}
             </ul>
           </Card>

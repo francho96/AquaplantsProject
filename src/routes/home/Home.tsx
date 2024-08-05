@@ -68,27 +68,30 @@ export default function App() {
         <Card>
           {tieneOrdenes ? (
             ordenes.map((orden: any, index: number) => (
-              <div key={index} style={{ marginBottom: "20px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <div>Orden:</div>
-                  <div>{orden.nro}</div>
+              <div key={index}>
+                <div style={{ marginBottom: "20px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div>Orden:</div>
+                    <div>{orden.nro}</div>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div>Tipo:</div>
+                    <div>{orden.category}</div>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div>Estado:</div>
+                    <div>{orden.status}</div>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div>Fecha de creación:</div>
+                    <div>{orden.Fcrea ? new Date(orden.Fcrea).toLocaleDateString() : 'Fecha no disponible'}</div>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div>Comuna:</div>
+                    <div>{orden.Comuna_Ciudad || 'Comuna no establecida'}</div>
+                  </div>
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <div>Tipo:</div>
-                  <div>{orden.category}</div>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <div>Estado:</div>
-                  <div>{orden.status}</div>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <div>Fecha de creación:</div>
-                  <div>{orden.Fcrea ? new Date(orden.Fcrea).toLocaleDateString() : 'Fecha no disponible'}</div>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <div>Comuna:</div>
-                  <div>{orden.Comuna_Ciudad || 'Comuna no establecida'}</div>
-                </div>
+                {index < ordenes.length - 1 && <hr style={{ border: "1px solid #ddd", margin: "10px 0" }} />}
               </div>
             ))
           ) : (

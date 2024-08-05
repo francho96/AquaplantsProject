@@ -255,14 +255,16 @@ export default function App() {
           </Card>
           <h2 style={{ color: '#444444', alignSelf: 'flex-start', marginTop: '15px' }}>Historial de solicitudes:</h2>
           <Card>
-            <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'disc' }}>
+            <ul style={{ marginTop: '0', marginBottom: '0', listStyleType: 'none', padding: '0' }}>
               {seedlingOrders.map((order, index) => (
-                <li key={`${order.Fcrea}-${index}`}>
+                <li key={`${order.Fcrea}-${index}`} style={{ paddingBottom: '10px' }}>
                   {new Date(order.Fcrea).toLocaleDateString()} - {order.title}
+                  {index < seedlingOrders.length - 1 && <hr style={{ border: '1px solid #ddd', margin: '10px 0' }} />}
                 </li>
               ))}
             </ul>
           </Card>
+
         </div>
       </div>
       <div className="carrito-icon" onClick={handleCartToggle} style={{ marginBottom: "80px", marginRight: "7px" }}>
