@@ -20,7 +20,6 @@ export default function App() {
     const [fields, setFields] = useState<InfoField[]>([]);
     const [popupVisible, setPopupVisible] = useState(false);
     const [currentField, setCurrentField] = useState<InfoField | null>(null);
-    const [userData, setUserData] = useState<any>(null);
 
     const handleFieldClick = (field: InfoField) => {
         setCurrentField(field);
@@ -41,7 +40,6 @@ export default function App() {
             axios.post(`${import.meta.env.VITE_APP_XDD}/usuario`, { email })
                 .then(response => {
                     console.log('Datos del usuario:', response.data);
-                    setUserData(response.data);
                     // Map the user data to the fields
                     setFields([
                         { label: 'Nombre', value: (response.data.firstname || '') + ' ' + (response.data.lastname || '') },
